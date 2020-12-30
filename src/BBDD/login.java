@@ -79,22 +79,27 @@ public class login extends HttpServlet {
 		String contrasena = req.getParameter("contrasena");
 		ServletContext context = req.getServletContext();
 		
-		String query = "SELECT 1 FROM usuario WHERE correo='" + email + "' AND contrasena='" + contrasena + "'";
-		synchronized(statement) {
-			try {
+		String query = "SELECT * FROM usuario WHERE correo='" + email + "' AND contrasena='" + contrasena + "'";
+		System.out.println(query);
+		try {
+			synchronized(statement) {
 				resultSet = statement.executeQuery(query);
-				System.out.println(resultSet);
-			} catch (SQLException e) {
+			}
+		
+			while(resultSet.next()){
+				if(resultSet.getString("correo").equals(email)){
+					JOptionPane.showMessageDialog(null, "Todo OK todo GUCCI");
+					System.out.println("Todo OK todo GUCCI");
+				} else {
+					JOptionPane.showMessageDialog(null, "No existe el usuario");
+					System.out.println("No existe el usuario");
+				}
+			}
+			//HAY QUE PONERLE ALGO PARA CUANDO ES EMPTY PORQUE NO HACE EL WHILE
+			
+		} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-		}
-			if(resultSet.equals(null)){
-				JOptionPane.showMessageDialog(null, "No existe el usuario");
-				System.out.println("No existe el usuario");
-			} else {
-				JOptionPane.showMessageDialog(null, "Todo OK todo GUCCI");
-				System.out.println("Todo OK todo GUCCI");
 			}
 	}
 
