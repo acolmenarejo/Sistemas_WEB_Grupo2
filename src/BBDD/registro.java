@@ -49,8 +49,8 @@ public class registro extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String correo = req.getParameter("email");
-		String contraseña = req.getParameter("contraseña");
-		System.out.println(contraseña);
+		String contraseÃ±a = req.getParameter("contraseï¿½a");
+		System.out.println(contraseÃ±a);
 		//String query = "select * from usuario";;
 		String mensaje = "";
 		try {
@@ -59,7 +59,7 @@ public class registro extends HttpServlet{
 			System.out.println(e);
 		}
 		try {
-		String query = "insert into usuario values( NULL,'A', '" + contraseña + "', '" + correo + "')";
+		String query = "insert into usuario values( NULL,'A', '" + contraseÃ±a + "', '" + correo + "')";
 		
 		/*
 		
@@ -75,7 +75,7 @@ public class registro extends HttpServlet{
 					System.out.println("correo existente");
 				}else {
 					System.out.println("connected2");
-					query = "insert into usuario values( NULL,'A', '" + contraseña + "', '" + correo + "')";
+					query = "insert into usuario values( NULL,'A', '" + contraseÃ±a + "', '" + correo + "')";
 				}
 										
 				}
