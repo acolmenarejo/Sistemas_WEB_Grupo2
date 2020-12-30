@@ -18,6 +18,22 @@ import javax.servlet.http.HttpServletResponse;
 public class conexionBBDD extends HttpServlet{
 
 	private Connection connection = null;
+	public Connection getConnection() {
+		return connection;
+	}
+
+	public void setConnection(Connection connection) {
+		this.connection = connection;
+	}
+
+	public Statement getStatement() {
+		return statement;
+	}
+
+	public void setStatement(Statement statement) {
+		this.statement = statement;
+	}
+
 	private Statement statement = null;
 	
 	@Override
@@ -25,17 +41,17 @@ public class conexionBBDD extends HttpServlet{
 		super.init();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "root");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "qwertyuiop1234567890");
 			statement = connection.createStatement();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		try {		
+		try {
 			System.out.println("connected");
 			statement.execute("CREATE TABLE IF NOT EXISTS usuario (\r\n"
 					+ " id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,\r\n"
 					+ " nombreusuario VARCHAR (20) NOT NULL,\r\n"
-					+ " contraseña VARCHAR(20) NOT NULL,\r\n"
+					+ " contrasena VARCHAR(20) NOT NULL,\r\n"
 					+ " correo VARCHAR (100) NOT NULL UNIQUE)");
 			
 			statement.execute("CREATE TABLE IF NOT EXISTS post (\r\n"

@@ -26,32 +26,47 @@ public class registro extends HttpServlet{
 		super.init();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "root");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "qwertyuiop1234567890");
 			statement = connection.createStatement();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		try {
+			System.out.println("connected");
+			statement.execute("CREATE TABLE IF NOT EXISTS usuario (\r\n"
+					+ " id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,\r\n"
+					+ " nombreusuario VARCHAR (20) NOT NULL,\r\n"
+					+ " contrasena VARCHAR(20) NOT NULL,\r\n"
+					+ " correo VARCHAR (100) NOT NULL UNIQUE)");
+			
+			statement.execute("CREATE TABLE IF NOT EXISTS post (\r\n"
+					+ "    id_post INT NOT NULL AUTO_INCREMENT,\r\n"
+					+ "    id INT NOT NULL,\r\n"
+					+ "    contenido TEXT NOT NULL,\r\n"
+					+ "    PRIMARY KEY(id_post),\r\n"
+					+ "    INDEX(id),\r\n"
+					+ "    FOREIGN KEY (id) REFERENCES usuario (id)\r\n"
+					+ "        ON DELETE CASCADE\r\n"
+					+ "        ON UPDATE NO ACTION\r\n"
+					+ ")");
 			
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		try {		
-			System.out.println("connected");
-	
-		} catch (Exception e) {
-			System.out.println(e);
-		}
 	}
 	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setContentType("text/html;charset=UTF-8");
-		
-	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String correo = req.getParameter("email");
+<<<<<<< HEAD
 		String nombreusuario = reg.getParameter("nombreusuario");
 		String contraseña = req.getParameter("contrase�a");
 		System.out.println(contraseña);
+=======
+		String contrasena = req.getParameter("contrasena");
+		System.out.println(contrasena);
+>>>>>>> 9da80631671a4997b7c41e1d87739bec33a41922
 		//String query = "select * from usuario";;
 		String mensaje = "";
 		try {
@@ -60,7 +75,11 @@ public class registro extends HttpServlet{
 			System.out.println(e);
 		}
 		try {
+<<<<<<< HEAD
 		String query = "insert into usuario values( NULL,'" + nombreusuario + "', '" + contraseña + "', '" + correo + "')";
+=======
+		String query = "insert into usuario values( NULL,'A', '" + contrasena + "', '" + correo + "')";
+>>>>>>> 9da80631671a4997b7c41e1d87739bec33a41922
 		
 		/*
 		
