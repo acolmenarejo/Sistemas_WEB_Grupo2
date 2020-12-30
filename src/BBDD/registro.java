@@ -49,6 +49,7 @@ public class registro extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String correo = req.getParameter("email");
+		String nombreusuario = reg.getParameter("nombreusuario");
 		String contraseña = req.getParameter("contrase�a");
 		System.out.println(contraseña);
 		//String query = "select * from usuario";;
@@ -59,7 +60,7 @@ public class registro extends HttpServlet{
 			System.out.println(e);
 		}
 		try {
-		String query = "insert into usuario values( NULL,'A', '" + contraseña + "', '" + correo + "')";
+		String query = "insert into usuario values( NULL,'" + nombreusuario + "', '" + contraseña + "', '" + correo + "')";
 		
 		/*
 		
