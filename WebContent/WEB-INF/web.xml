@@ -3,7 +3,15 @@
 	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
-	
+	<servlet>
+		<servlet-name>ServletPosts</servlet-name>
+		<servlet-class>BBDD.ServletPosts</servlet-class>
+		<resource-ref> 
+			<res-ref-name>jdbc/blog</res-ref-name>
+			<res-type>javax.sql.DataSource</res-type>
+			<res-auth>CONTAINER</res-auth>
+		</resource-ref>
+	</servlet>
 
 	<error-page>
 		<exception-type>java.sql.SQLIntegrityConstraintViolationException</exception-type>
