@@ -75,8 +75,6 @@ public class registro extends HttpServlet{
 
 		String query = "insert into usuario values( NULL,'" + nombreusuario + "', '" + contrasena + "', '" + correo + "')";
 
-		String query2 = "insert into usuario values( NULL,'A', '" + contrasena + "', '" + correo + "')";
-
 		
 		/*
 		

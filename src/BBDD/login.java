@@ -84,23 +84,29 @@ public class login extends HttpServlet {
 		try {
 			synchronized(statement) {
 				resultSet = statement.executeQuery(query);
+				//System.out.println(resultSet.next());
 			}
 		
-			while(resultSet.next()){
-				if(resultSet.getString("correo").equals(email)){
-					JOptionPane.showMessageDialog(null, "Todo OK todo GUCCI");
-					System.out.println("Todo OK todo GUCCI");
-				} else {
-					JOptionPane.showMessageDialog(null, "No existe el usuario");
-					System.out.println("No existe el usuario");
-				}
+			if(resultSet.next() && resultSet.getString("correo").equals(email)){
+				//JOptionPane.showMessageDialog(null, "Todo OK todo GUCCI");
+				System.out.println("Todo OK todo GUCCI");
+				
+				RequestDispatcher inicio = context.getNamedDispatcher("inicio");
+				req.setAttribute("autenticado", true);
+				inicio.forward(req, resp);
+			} else {
+				//JOptionPane.showMessageDialog(null, "No existe el usuario");
+				System.out.println("El ususario o la contraseña no son correctos");
+
+				RequestDispatcher error = context.getRequestDispatcher("/paginasError/error.html");
+				error.forward(req, resp);
 			}
-			//HAY QUE PONERLE ALGO PARA CUANDO ES EMPTY PORQUE NO HACE EL WHILE
 			
 		} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		
 	}
 
 	
