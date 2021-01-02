@@ -17,7 +17,7 @@ public class pantallaInicial extends HttpServlet{
 		String nombre = req.getParameter("nombre");
 		String apellidos = req.getParameter("apellidos");
 		String email = req.getParameter("email");
-		String contraseÃ±a = req.getParameter("contraseï¿½a");
+		String contraseña = req.getParameter("contraseña");
 		String edad = req.getParameter("edad");
 		String[] hobbies = req.getParameterValues("hobbies");
 		System.out.println(email);
