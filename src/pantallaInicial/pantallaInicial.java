@@ -24,6 +24,7 @@ import BBDD.Blog;
 public class pantallaInicial extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
+		
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		Object autenticadoObj = req.getAttribute("autenticado");

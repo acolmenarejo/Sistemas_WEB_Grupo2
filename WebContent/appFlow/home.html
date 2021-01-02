@@ -1,61 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>PYET/Home</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<title>PYET/Home</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-    
-    
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#"><img alt="" height="100%" src="../imagenes/LogoCuadrado.jpg"></a>
-                </div>
-                <div>
-                    <div class="collapse navbar-collapse" id="myNavbar">
-                        <form class="navbar-form navbar-left" action="/action_page.php">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search" name="search">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-default" type="submit">
-                                        <i class="glyphicon glyphicon-search"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                        <ul class="nav navbar-nav navbar-right">
-                            <!-- Luego se pondrán con form si corresponde -->
-                           <li><a href="#section1">Crear post</a></li>
-                           <li class="active"><a href="#section1">Mis posts</a></li>
-                           <li class="dropdown">
-                               <a class="dropdown-toggle" data-toggle="dropdown" href="#">Temática
-                                   <span class="caret"></span></a>
-                               <ul class="dropdown-menu">
-                                   <li class="active"><a href="#">Juegos de rol</a></li>
-                                   <li><a href="#">PCs y electrónica</a></li>
-                                   <li><a href="#">Otro tema bro</a></li>
-                               </ul>
-                           </li>
-                           
-                           <li><a href="#section1">Cerrar sesión</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-    </nav>
+
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#myNavbar">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"><img alt="" height="100%" src="../imagenes/LogoCuadrado.jpg"></a>
+			</div>
+			<div>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<form class="navbar-form navbar-left" action="/action_page.php">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Search"
+								name="search">
+							<div class="input-group-btn">
+								<button class="btn btn-default" type="submit">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</div>
+						</div>
+					</form>
+					<ul class="nav navbar-nav navbar-right">
+						<!-- Luego se pondrán con form si corresponde -->
+						<li>
+							<form method="post" action="/Proyecto_SW1/crearPost">
+								<button type="submit" name="submit" id="submit">Crear Post</button>
+							</form>
+						</li>
+						<li class="active">
+							<form method="post" action="/Proyecto_SW1/crearPost">
+								<a type="submit" name="submit" id="submit">Mis posts</a>
+							</form>
+						</li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Temática <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li class="active"><a href="#">Juegos de rol</a></li>
+								<li><a href="#">PCs y electrónica</a></li>
+								<li><a href="#">Otro tema bro</a></li>
+							</ul></li>
+
+						<li><a href="#section1">Cerrar sesión</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</nav>
 
 
 </body>
 </html>
-
-
