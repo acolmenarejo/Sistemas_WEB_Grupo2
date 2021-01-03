@@ -9,6 +9,15 @@
 		<exception-type>java.sql.SQLIntegrityConstraintViolationException</exception-type>
 		 <location>/formulario1/Login.html</location>
 	</error-page>
+	
+	<session-config>
+		<session-timeout>
+			25
+		</session-timeout>
+	</session-config>
+
+
+
 
 </web-app>
 
