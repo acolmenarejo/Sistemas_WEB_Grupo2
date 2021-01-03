@@ -16,7 +16,9 @@
 		</session-timeout>
 	</session-config>
 
-
+	<listener>
+		<listener-class>listeners.listenerSesion</listener-class>
+	</listener>
 
 
 </web-app>
