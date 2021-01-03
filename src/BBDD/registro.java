@@ -42,6 +42,8 @@ public class registro extends HttpServlet{
 			statement.execute("CREATE TABLE IF NOT EXISTS post (\r\n"
 					+ "    id_post INT NOT NULL AUTO_INCREMENT,\r\n"
 					+ "    id INT NOT NULL,\r\n"
+					+ "    titulo TEXT NOT NULL,\r\n"
+					+ "    tematica TEXT NOT NULL,\r\n"
 					+ "    contenido TEXT NOT NULL,\r\n"
 					+ "    PRIMARY KEY(id_post),\r\n"
 					+ "    INDEX(id),\r\n"
