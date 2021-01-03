@@ -53,7 +53,7 @@ public class inicializadorVariables extends HttpServlet {
 			
 			statement.execute("CREATE TABLE IF NOT EXISTS post (\r\n"
 					+ "    id_post INT NOT NULL AUTO_INCREMENT,\r\n"
-					+ "    id INT NOT NULL,\r\n"
+					+ "    id_usuario INT NOT NULL,\r\n"
 					+ "    contenido TEXT NOT NULL,\r\n"
 					+ "    PRIMARY KEY(id_post),\r\n"
 					+ "    INDEX(id),\r\n"
@@ -75,9 +75,9 @@ public class inicializadorVariables extends HttpServlet {
 		String identificadorSesion = session.getId();
 	
 		//Escribir dispacher a Pyet.html
-		//Usar identificadorSesion ¿para la base de datos? ¿para asociarlo a un post?
+		//Usar identificadorSesion ï¿½para la base de datos? ï¿½para asociarlo a un post?
 		
-		//Esto a modo de visualización. Luego lo habrá que complementarlo con la estructura de Pyet.html
+		//Esto a modo de visualizaciï¿½n. Luego lo habrï¿½ que complementarlo con la estructura de Pyet.html
 		resp.setContentType("text/html;charset=UTF-8");
 		try(PrintWriter out = resp.getWriter()){
 			out.println("<html>");

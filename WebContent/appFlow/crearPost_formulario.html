@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Crear Post</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<div class="container">
+		<form action="/Proyecto_SW1/crearPost" method="post" class="was-validated">
+			<div class="form-group">
+				<label for="Titulo">Título:</label> <input type="text"
+					class="form-control" id="titulo" placeholder="Título" name="titulo"
+					required>
+				<div class="invalid-feedback">No puedes dejar este campo vacío</div>
+			</div>
+			<div class="form-group">
+				<label for="contenido">Contenido:</label> <input type="text"
+					class="form-control" id="contenido" placeholder="contenido"
+					name="contenido" required>
+				<div class="invalid-feedback">No puedes dejar este campo vacío</div>
+			</div>
+			<div class="form-group">
+				<label for="exampleFormControlSelect1">Example select</label> <select
+					class="form-control" id="tematica" name="tematica">
+					<option>Juegos de rol</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+				</select>
+			</div>
+			<button type="submit" class="btn btn-success">Publicar</button>
+		</form>
+	</div>
+
+</body>
+</html>
