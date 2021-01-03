@@ -62,41 +62,41 @@ public class pantallaInicial extends HttpServlet {
 			</head>
 			<body>
 
-				<nav class='navbar navbar-expand-md bg-dark navbar-dark fixed-top'>
-					<a class='navbar-brand' href='#'><img alt='logo'
-						style='width: 40px;' src='../imagenes/LogoCuadrado.jpg'></a>
-					<button class='navbar-toggler' type='button' data-toggle='collapse'
-						data-target='#collapsibleNavbar'>
-						<span class='navbar-toggler-icon'></span>
-					</button>
-					<div class='collapse navbar-collapse justify-content-between'
-						id='collapsibleNavbar'>
-						<form class='form-inline'>
-							<div class='input-group'>
-								<input type='text' class='form-control' placeholder='Buscar'>
-							</div>
-						</form>
-						<ul class='navbar-nav'>
-							<li class='nav-item'><a class='nav-link'
-								href='./crearPost_formulario.html'>Crear Post</a></li>
-							<li class='nav-item'><a class='nav-link'
-								href='/Proyecto_SW1/misPosts'>Mis posts</a></li>
-							<li class='nav-item dropdown'><a
-								class='nav-link dropdown-toggle' href='#' id='navbarDropdown'
-								role='button' data-toggle='dropdown' aria-haspopup='true'
-								aria-expanded='false'> Temática </a>
-								<div class='dropdown-menu' aria-labelledby='navbarDropdown'>
-									<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=juegosRol'>Juegos de rol</a>
-									<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=2'>PCs y electrónica</a>
-									<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=3'>Otro tema bro</a>
-									<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=4'>Tema 4</a>
-									<div class='dropdown-divider'></div>
-									<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=T'>Todo</a>
-								</div></li>
-							<li class='nav-item'><a class='nav-link' href='#'>Cerrar Sesión</a></li>
-						</ul>
-					</div>
-				</nav>
+			<nav class='navbar navbar-expand-md bg-dark navbar-dark fixed-top'>
+				<a class='navbar-brand' href='#'><img alt='logo'
+					style='width: 40px;' src='../imagenes/LogoCuadrado.jpg'></a>
+				<button class='navbar-toggler' type='button' data-toggle='collapse'
+					data-target='#collapsibleNavbar'>
+					<span class='navbar-toggler-icon'></span>
+				</button>
+				<div class='collapse navbar-collapse justify-content-between'
+					id='collapsibleNavbar'>
+					<form class='form-inline'>
+						<div class='input-group'>
+							<input class="form-control" id="myInput" type="text" placeholder='Buscar'>
+						</div>
+					</form>
+					<ul class='navbar-nav'>
+						<li class='nav-item'><a class='nav-link'
+							href='./crearPost_formulario.html'>Crear Post</a></li>
+						<li class='nav-item'><a class='nav-link'
+							href='/Proyecto_SW1/misPosts'>Mis posts</a></li>
+						<li class='nav-item dropdown'><a
+							class='nav-link dropdown-toggle' href='#' id='navbarDropdown'
+							role='button' data-toggle='dropdown' aria-haspopup='true'
+							aria-expanded='false'> Temática </a>
+							<div class='dropdown-menu' aria-labelledby='navbarDropdown'>
+								<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=juegosRol'>Juegos de rol</a>
+								<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=2'>PCs y electrónica</a>
+								<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=3'>Otro tema bro</a>
+								<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=4'>Tema 4</a>
+								<div class='dropdown-divider'></div>
+								<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=T'>Todo</a>
+							</div></li>
+						<li class='nav-item'><a class='nav-link' href='#'>Cerrar Sesión</a></li>
+					</ul>
+				</div>
+			</nav>
 			*/
 			
 			
@@ -149,7 +149,22 @@ public class pantallaInicial extends HttpServlet {
 				out.close();
 			}
 			
+			//HACER:
+			//Más print, los de cierre, los comento. hay que ponerlo igual que los de antes. Esto irá en todos los siguientes también.
+			/*
+			<script>
+			$(document).ready(function(){
+				$("#myInput").on("keyup", function() {
+					var value = $(this).val().toLowerCase();
+					$("#contenedorPosts .card").filter(function() {
+						$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+					});
+				});
+			});
+			</script>
+			*/
 			out.println("</body></html>");
+			
 			
 		
 		} else {

@@ -26,7 +26,7 @@
 			id='collapsibleNavbar'>
 			<form class='form-inline'>
 				<div class='input-group'>
-					<input type='text' class='form-control' placeholder='Buscar'>
+					<input class="form-control" id="myInput" type="text" placeholder='Buscar'>
 				</div>
 			</form>
 			<ul class='navbar-nav'>
@@ -55,14 +55,14 @@
 
 
 
-	<div class='container container-fluid' style='margin-top:80px'>
+	<div class='container container-fluid' style='margin-top:80px' id="contenedorPosts">
 		<div class='card'>
 			<div class='card-header bg-success text-white'>
 				<h3>Título</h3>
 			</div>
 			<div class='card-body'>
 				<p>Contenido</p>
-				<footer class='blockquote-footer'>usuario</footer>
+				<footer class='blockquote-footer'>Pablo</footer>
 			</div>
 		</div>
 		<br>
@@ -72,12 +72,22 @@
 			</div>
 			<div class='card-body'>
 				<p>Contenido 2</p>
-				<footer class='blockquote-footer'>usuario 2</footer>
+				<footer class='blockquote-footer'>Pepe</footer>
 			</div>
 		</div>
 		<br>
 	</div>
 
+<script>
+$(document).ready(function(){
+	$("#myInput").on("keyup", function() {
+		var value = $(this).val().toLowerCase();
+		$("#contenedorPosts .card").filter(function() {
+			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		});
+	});
+});
+</script>
 
 </body>
 </html>
