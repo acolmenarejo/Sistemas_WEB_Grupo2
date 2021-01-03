@@ -31,7 +31,7 @@ public class ServletPost extends HttpServlet{
 			 while (rs.next()) {
 					Blog post = new Blog();
 					post.setId(rs.getInt("id_blog"));
-					post.setNombre(rs.getString("nombre"));
+					post.setNombre(rs.getString("titulo"));
 					post.setContenido(rs.getString("contenido"));
 					posts.add(post);
 					System.out.println(posts);

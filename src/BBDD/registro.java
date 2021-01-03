@@ -61,7 +61,6 @@ public class registro extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String correo = req.getParameter("email");
-
 		String nombreusuario = req.getParameter("nombreusuario");
 		String contrasena = req.getParameter("contrasena");
 		System.out.println(contrasena);
@@ -74,8 +73,8 @@ public class registro extends HttpServlet{
 			System.out.println(e);
 		}
 		try {
-
-		String query = "insert into usuario values( NULL,'" + nombreusuario + "', '" + contrasena + "', '" + correo + "')";
+	//Petición a la BBDD para que inserte los parametros del usuario y lo registre
+		String query = "INSERT INTO usuario VALUES( NULL,'" + nombreusuario + "', '" + contrasena + "', '" + correo + "')";
 
 		
 		/*
