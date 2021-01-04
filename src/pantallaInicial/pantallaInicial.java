@@ -77,16 +77,13 @@ public class pantallaInicial extends HttpServlet {
 			out.println("</div>");
 			out.println("</nav>");
 							
-			//Obtener e imprimir los posts	
 			try {
 				
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "qwertyuiop1234567890");
 				statement = connection.createStatement();
 				
-				//HACER:
-				//Poner al select una limitación (LIMIT 20) o algo así
-				rs = statement.executeQuery("SELECT * from post");
+				rs = statement.executeQuery("SELECT * from post LIMIT 20");
 				
 				out.println("<div class='container container-fluid' style='margin-top:80px'>");
 				
