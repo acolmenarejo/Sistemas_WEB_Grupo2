@@ -16,8 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class tematica
- */
+ * Servlet implementation class tematica */
 @WebServlet("/tematica")
 public class tematica extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -71,10 +70,10 @@ public class tematica extends HttpServlet {
 			error.forward(req, resp);
 			System.out.println("error pantalla tematica");
 		}
-			}
-		
-		}
 	}
+		
+		
+	
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

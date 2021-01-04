@@ -119,28 +119,25 @@ public class pantallaInicial extends HttpServlet {
 				out.println("<div class='container container-fluid' style='margin-top:80px'>");
 				//Iterador para imprimir los posts
 				while (rs.next()) {
-					//HACER:
-					//Las comillas exteriores tienen que ser " y las interiores ' (al revés de como está ahora / imitando la de encima del while)
-					//out.println("...'..'....");
 					
-					out.println('<div class="card">');
-					out.println('<div class="card-header bg-success text-white">');
-					out.println('<h3>' + rs.getString("titulo") + '</h3>');
-					out.println('</div>');
-					out.println('<div class="card-body">');
-					out.println('<p>'+ rs.getString("contenido") + '</p>');
+					out.println("<div class='car'>");
+					out.println("<div class='card-header bg-success text-white'>");
+					out.println("<h3>" + rs.getString("titulo") + "</h3>");
+					out.println("</div>");
+					out.println("<div class='card-body'>");
+					out.println("<p>"+ rs.getString("contenido") + "</p>");
 					
 					//HACER:
 					//Revisar que este statement funciona, igual hay que parsear el id_usuario.
 					resultset = statement.executeQuery("SELECT * FROM usuario WHERE id=" + rs.getInt("id_usuario"));
 					if(resultset.next()) {
-						out.println('<footer class="blockquote-footer">'+ resultset.getString("nombreusuario") +'</footer>');
+						out.println("<footer class='blockquote-footer'>"+ resultset.getString("nombreusuario") +"</footer>");
 					}
 					
 					
-					out.println('</div>');
-					out.println('</div>');
-					out.println('<br>');
+					out.println("</div>");
+					out.println("</div>");
+					out.println("<br>");
 				}
 				out.println("</div>");
 			} catch (Exception e) {

@@ -36,14 +36,14 @@ public class crearpost extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//Lectura de los par�metros del usuario
+//Lectura de los parametros del usuario
 		String titulo = req.getParameter("titulo");
 		String tematica = req.getParameter("tematica");
 		String contenido = req.getParameter("contenido");
 		ServletContext context = req.getServletContext();
 		
 
-//Petici�n que realizamos a la base de datos para que inserte dentro de la tabla de post lo que el usuario ha metido por pantalla
+//Peticion que realizamos a la base de datos para que inserte dentro de la tabla de post lo que el usuario ha metido por pantalla
 		String query = "INSERTO INTO post VALUES( NULL, '" + req.getAttribute("id_usuario").toString() + "', '" + titulo + "', '" + tematica + "', '" + contenido + "')";
 
 
