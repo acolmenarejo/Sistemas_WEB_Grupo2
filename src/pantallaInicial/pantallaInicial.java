@@ -39,72 +39,44 @@ public class pantallaInicial extends HttpServlet {
 			resp.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = resp.getWriter();
 			
-			//Impresión del html:
-			
-			//HACER:
-			//Poner el out print, copiar de home(v4).html desde la primera línea hasta el </nav>
-			//Las dejo copiadas ya y la primera hecha, (las comento ahora por no tener todos los errores)
 			out.println("<!DOCTYPE html>");
-			/*
-			<html lang='en'>
-			<head>
-			<title>Bootstrap Example</title>
-			<meta charset='utf-8'>
-			<meta name='viewport' content='width=device-width, initial-scale=1'>
-			<link rel='stylesheet'
-				href='https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'>
-			<script
-				src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
-			<script
-				src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
-			<script
-				src='https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js'></script>
-			</head>
-			<body>
-
-			<nav class='navbar navbar-expand-md bg-dark navbar-dark fixed-top'>
-				<a class='navbar-brand' href='#'><img alt='logo'
-					style='width: 40px;' src='../imagenes/LogoCuadrado.jpg'></a>
-				<button class='navbar-toggler' type='button' data-toggle='collapse'
-					data-target='#collapsibleNavbar'>
-					<span class='navbar-toggler-icon'></span>
-				</button>
-				<div class='collapse navbar-collapse justify-content-between'
-					id='collapsibleNavbar'>
-					<form class='form-inline'>
-						<div class='input-group'>
-							<input class="form-control" id="myInput" type="text" placeholder='Buscar'>
-						</div>
-					</form>
-					<ul class='navbar-nav'>
-						<li class='nav-item'><a class='nav-link'
-							href='./crearPost_formulario.html'>Crear Post</a></li>
-						<li class='nav-item'><a class='nav-link'
-							href='/Proyecto_SW1/misPosts'>Mis posts</a></li>
-						<li class='nav-item dropdown'><a
-							class='nav-link dropdown-toggle' href='#' id='navbarDropdown'
-							role='button' data-toggle='dropdown' aria-haspopup='true'
-							aria-expanded='false'> Temática </a>
-							<div class='dropdown-menu' aria-labelledby='navbarDropdown'>
-								<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=juegosRol'>Juegos de rol</a>
-								<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=2'>PCs y electrónica</a>
-								<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=3'>Otro tema bro</a>
-								<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=4'>Tema 4</a>
-								<div class='dropdown-divider'></div>
-								<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=T'>Todo</a>
-							</div></li>
-						<li class='nav-item'><a class='nav-link' href='#'>Cerrar Sesión</a></li>
-					</ul>
-				</div>
-			</nav>
-			*/
-			
-			
-			
-			
-			
-			
-			
+			out.println("<html lang='en'>");
+			out.println("<head>");
+			out.println("<title>Bootstrap Example</title>");
+			out.println("<meta charset='utf-8'>");
+			out.println("<link rel='stylesheet'	href='https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'>");
+			out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>");
+			out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>");
+			out.println("<script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js'></script>");
+			out.println("</head>");
+			out.println("<body>");
+			out.println("<nav class='navbar navbar-expand-md bg-dark navbar-dark fixed-top'>");
+			out.println("<a class='navbar-brand' href='#'><img alt='logo'style='width: 40px;' src='../imagenes/LogoCuadrado.jpg'></a>");
+			out.println("<button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#collapsibleNavbar'>");
+			out.println("<span class='navbar-toggler-icon'></span>");
+			out.println("</button>");
+			out.println("<div class='collapse navbar-collapse justify-content-between' id='collapsibleNavbar'>");
+			out.println("<form class='form-inline'>");
+			out.println("<div class='input-group'>");
+			out.println("<input class=\"form-control\" id=\"myInput\" type=\"text\" placeholder='Buscar'>");
+			out.println("</form>");
+			out.println("<ul class='navbar-nav'>");
+			out.println("<li class='nav-item'><a class='nav-link' href='./crearPost_formulario.html'>Crear Post</a></li>");
+			out.println("<li class='nav-item'><a class='nav-link' href='/Proyecto_SW1/misPosts'>Mis posts</a></li>");
+			out.println("<li class='nav-item dropdown'><a\r\n class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'> Temática </a>");
+			out.println("<div class='dropdown-menu' aria-labelledby='navbarDropdown'>");
+			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=juegosRol'>Juegos de rol</a>");
+			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=2'>PCs y electr�nica</a>");
+			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=3'>Otro tema bro</a>");
+			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=4'>Tema 4</a>");
+			out.println("<div class='dropdown-divider'></div>");
+			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=T'>Todo</a>");
+			out.println("</div></li>");
+			out.println("<li class='nav-item'><a class='nav-link' href='#'>Cerrar Sesi�n</a></li>");
+			out.println("</ul>");
+			out.println("</div>");
+			out.println("</nav>");
+							
 			//Obtener e imprimir los posts	
 			try {
 				
@@ -117,11 +89,17 @@ public class pantallaInicial extends HttpServlet {
 				rs = statement.executeQuery("SELECT * from post");
 				
 				out.println("<div class='container container-fluid' style='margin-top:80px'>");
-				//Iterador para imprimir los posts
+				
 				while (rs.next()) {
+
+			
+					out.println("<div class=\"card\">");
+					out.println("<div class=\'card-header bg-success text-white\'>");
+
 					
 					out.println("<div class='car'>");
 					out.println("<div class='card-header bg-success text-white'>");
+
 					out.println("<h3>" + rs.getString("titulo") + "</h3>");
 					out.println("</div>");
 					out.println("<div class='card-body'>");
@@ -129,7 +107,7 @@ public class pantallaInicial extends HttpServlet {
 					
 					//HACER:
 					//Revisar que este statement funciona, igual hay que parsear el id_usuario.
-					resultset = statement.executeQuery("SELECT * FROM usuario WHERE id=" + rs.getInt("id_usuario"));
+					ResultSet resultset = statement.executeQuery("SELECT * FROM usuario WHERE id=" + rs.getInt("id_usuario"));
 					if(resultset.next()) {
 						out.println("<footer class='blockquote-footer'>"+ resultset.getString("nombreusuario") +"</footer>");
 					}
@@ -140,29 +118,22 @@ public class pantallaInicial extends HttpServlet {
 					out.println("<br>");
 				}
 				out.println("</div>");
+				out.println("<script>");
+				out.println("$(document).ready(function(){");
+				out.println("$(\"#myInput\").on(\"keyup\", function() {");
+				out.println("var value = $(this).val().toLowerCase();");
+				out.println("$(\"#contenedorPosts .card\").filter(function() {");
+				out.println("$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)");
+				out.println("});");
+				out.println("});");
+				out.println("});");
+				out.println("</script>");
+				out.println("</body></html>");
 			} catch (Exception e) {
 				System.out.println(e);
 			} finally {
 				out.close();
-			}
-			
-			//HACER:
-			//Más print, los de cierre, los comento. hay que ponerlo igual que los de antes. Esto irá en todos los siguientes también.
-			/*
-			<script>
-			$(document).ready(function(){
-				$("#myInput").on("keyup", function() {
-					var value = $(this).val().toLowerCase();
-					$("#contenedorPosts .card").filter(function() {
-						$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-					});
-				});
-			});
-			</script>
-			*/
-			out.println("</body></html>");
-			
-			
+			}	
 		
 		} else {
 			RequestDispatcher error = context.getRequestDispatcher("/paginasError/error.html");
