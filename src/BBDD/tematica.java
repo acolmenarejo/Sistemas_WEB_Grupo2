@@ -29,7 +29,7 @@ public class tematica extends HttpServlet {
 			Connection connection = null;
 			Statement statement = null;
 			ResultSet rs;
-			
+			ResultSet rs1;
 			
 			resp.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = resp.getWriter();
@@ -42,18 +42,31 @@ public class tematica extends HttpServlet {
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "qwertyuiop1234567890");
 				statement = connection.createStatement();
-				
-				//HACER:
-				//Comprobar el select.
-				//Poner al select una limitación (LIMIT 20) o algo así
-				rs = statement.executeQuery("SELECT * from post WHERE tema='"+ temaObj.toString() +"'");
+				rs = statement.executeQuery("SELECT * from post WHERE tema='"+ temaObj.toString() +"'LIMIT 20");
 				
 				out.println("<div class='container container-fluid' style='margin-top:80px'>");
 				//Iterador para imprimir los posts
 				while (rs.next()) {
 					//HACER:
 					//Copiar lo de pantallaInicial cuando esté bien el comillado
+					out.println("<div class='car'>");
+					out.println("<div class='card-header bg-success text-white'>");
+					out.println("<h3>" + rs.getString("titulo") + "</h3>");
+					out.println("</div>");
+					out.println("<div class='card-body'>");
+					out.println("<p>"+ rs.getString("contenido") + "</p>");
 					
+					//HACER:
+					//Revisar que este statement funciona, igual hay que parsear el id_usuario.
+					rs1 = statement.executeQuery("SELECT * FROM usuario WHERE id=" + rs.getInt("id_usuario"));
+					if(rs1.next()) {
+						out.println("<footer class='blockquote-footer'>"+ rs1.getString("nombreusuario") +"</footer>");
+					}
+					
+					
+					out.println("</div>");
+					out.println("</div>");
+					out.println("<br>");
 				}
 				out.println("</div>");
 			} catch (Exception e) {
