@@ -68,6 +68,7 @@ public class tematica extends HttpServlet {
 					out.println("<br>");
 				}
 				out.println("</div>");
+				out.println("</body></html>");
 			} catch (Exception e) {
 				System.out.println(e);
 			} finally {
