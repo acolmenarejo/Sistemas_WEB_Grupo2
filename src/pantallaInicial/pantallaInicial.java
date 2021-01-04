@@ -95,11 +95,8 @@ public class pantallaInicial extends HttpServlet {
 			
 					out.println("<div class=\"card\">");
 					out.println("<div class=\'card-header bg-success text-white\'>");
-
-					
 					out.println("<div class='car'>");
 					out.println("<div class='card-header bg-success text-white'>");
-
 					out.println("<h3>" + rs.getString("titulo") + "</h3>");
 					out.println("</div>");
 					out.println("<div class='card-body'>");

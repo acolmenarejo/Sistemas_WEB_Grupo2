@@ -29,7 +29,6 @@ public class tematica extends HttpServlet {
 			Connection connection = null;
 			Statement statement = null;
 			ResultSet rs;
-			ResultSet rs1;
 			
 			resp.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = resp.getWriter();
@@ -58,9 +57,9 @@ public class tematica extends HttpServlet {
 					
 					//HACER:
 					//Revisar que este statement funciona, igual hay que parsear el id_usuario.
-					rs1 = statement.executeQuery("SELECT * FROM usuario WHERE id=" + rs.getInt("id_usuario"));
-					if(rs1.next()) {
-						out.println("<footer class='blockquote-footer'>"+ rs1.getString("nombreusuario") +"</footer>");
+					ResultSet resultset = statement.executeQuery("SELECT * FROM usuario WHERE id=" + rs.getInt("id_usuario"));
+					if(resultset.next()) {
+						out.println("<footer class='blockquote-footer'>"+ resultset.getString("nombreusuario") +"</footer>");
 					}
 					
 					
