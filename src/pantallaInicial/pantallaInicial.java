@@ -80,7 +80,7 @@ public class pantallaInicial extends HttpServlet {
 			try {
 				
 				Class.forName("com.mysql.cj.jdbc.Driver");
-				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "qwertyuiop1234567890");
+				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "root");
 				statement = connection.createStatement();
 				
 				rs = statement.executeQuery("SELECT * from post LIMIT 20");
