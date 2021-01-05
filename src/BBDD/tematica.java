@@ -38,6 +38,7 @@ public class tematica extends HttpServlet {
 			out.println("<head>");
 			out.println("<title>Bootstrap Example</title>");
 			out.println("<meta charset='utf-8'>");
+			out.println("<meta name='viewport' content='width=device-width, initial-scale=1'>");
 			out.println("<link rel='stylesheet'	href='https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'>");
 			out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>");
 			out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>");
@@ -53,6 +54,7 @@ public class tematica extends HttpServlet {
 			out.println("<form class='form-inline'>");
 			out.println("<div class='input-group'>");
 			out.println("<input class=\"form-control\" id=\"myInput\" type=\"text\" placeholder='Buscar'>");
+			out.println("</div>");
 			out.println("</form>");
 			out.println("<ul class='navbar-nav'>");
 			out.println("<li class='nav-item'><a class='nav-link' href='./crearPost_formulario.html'>Crear Post</a></li>");
