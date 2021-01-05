@@ -25,7 +25,7 @@ public class pantallaInicial extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		HttpSession session = req.getSession();
+		HttpSession session = req.getSession(false);
 		Object autenticadoObj = session.getAttribute("autenticado");
 		//Object autenticadoObj = req.getAttribute("autenticado");
 		ServletContext context = req.getServletContext();

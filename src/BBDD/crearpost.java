@@ -33,9 +33,9 @@ public class crearpost extends HttpServlet {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			//contraseña root:
-			//connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "root");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "root");
 			//contraseña carlos:
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "qwertyuiop1234567890");
+			//connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "qwertyuiop1234567890");
 			statement = connection.createStatement();
 		} catch (Exception e) {
 			System.out.println(e);
@@ -50,7 +50,7 @@ public class crearpost extends HttpServlet {
 		String contenido = req.getParameter("contenido");
 		ServletContext context = req.getServletContext();
 		//System.out.println((int) req.getAttribute("id_usuario"));
-		HttpSession session = req.getSession();
+		HttpSession session = req.getSession(false);
 		System.out.println(session.getAttribute("idUsuarioSesion"));
 		System.out.println(titulo + ' ' + tematica + ' ' + contenido);
 

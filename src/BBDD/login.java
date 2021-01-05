@@ -11,11 +11,12 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
+
 
 /**
  * Servlet implementation class login
@@ -34,9 +35,9 @@ public class login extends HttpServlet {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			//contraseña root:
-			//connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "root");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "root");
 			//contraseña carlos:
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "qwertyuiop1234567890");
+			//connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "qwertyuiop1234567890");
 			statement = connection.createStatement();
 		} catch (Exception e) {
 			System.out.println(e);
@@ -71,12 +72,31 @@ public class login extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	/*
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		/*
+		//Comprobamos la existencia de la cookie. Si existe logueamos directamente al usuario. Si no existe creamos la cookie
+		String idSession = null;
+		Cookie[] cookies = req.getCookies();
+		
+		if(cookies!=null) {
+		for(int i=0; i<cookies.length; i++)
+		{
+			if(cookies[i].getName().equals("idUsuarioSession")) {
+				
+				idSession = cookies[i].getValue(); 
+				break;
+			}
+		  
+
+
+		}		
+		}
+		
+		*/
+		
 	}
-	*/
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -92,13 +112,24 @@ public class login extends HttpServlet {
 				resultSet = statement.executeQuery(query);
 				//System.out.println(resultSet.next());
 			}
-		
+		//Revisar: Posible fallo
 			if(resultSet.next() && resultSet.getString("correo").equals(email)){
 				//JOptionPane.showMessageDialog(null, "Todo OK todo GUCCI");
 				System.out.println("Todo OK todo GUCCI");
-				
+						
 				RequestDispatcher inicio = context.getNamedDispatcher("inicio");
+				
+				//Comprobamos que no haya una sesion previa
+				HttpSession antiguaSession = req.getSession(false);
+				if(antiguaSession != null) {
+					antiguaSession.invalidate();
+				}
+				//Creamos una nueva sesi�n
 				HttpSession session = req.getSession();
+				
+				//Creamos la cookie del usuario
+				Cookie cookie= new Cookie("sessionId",String.valueOf(resultSet.getInt("id")));
+				resp.addCookie(cookie);	
 				
 				//req.setAttribute("autenticado", true);
 				session.setAttribute("autenticado", true);

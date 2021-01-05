@@ -12,8 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
+import javax.servlet.http.Cookie;
 /**
  * Servlet implementation class inicializadorVariables
  */
@@ -38,7 +37,7 @@ public class inicializadorVariables extends HttpServlet {
 		super.init();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "qwertyuiop1234567890");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "root");
 			statement = connection.createStatement();
 		} catch (Exception e) {
 			System.out.println(e);
@@ -71,6 +70,8 @@ public class inicializadorVariables extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		/*
 		HttpSession session = req.getSession();
 		String identificadorSesion = session.getId();
 	
@@ -87,8 +88,9 @@ public class inicializadorVariables extends HttpServlet {
 			out.println("<h2>Su id es " + session.getId() + "</h2>");
 			out.println("</body></html>");
 		}		
-		
+	*/	
 	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
