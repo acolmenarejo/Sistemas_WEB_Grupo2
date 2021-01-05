@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import BBDD.Blog;
 
@@ -24,8 +25,9 @@ public class pantallaInicial extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		Object autenticadoObj = req.getAttribute("autenticado");
+		HttpSession session = req.getSession();
+		Object autenticadoObj = session.getAttribute("autenticado");
+		//Object autenticadoObj = req.getAttribute("autenticado");
 		ServletContext context = req.getServletContext();
 		if(autenticadoObj != null && (boolean) autenticadoObj) {
 			Connection connection = null;
@@ -52,7 +54,7 @@ public class pantallaInicial extends HttpServlet {
 			out.println("</head>");
 			out.println("<body>");
 			out.println("<nav class='navbar navbar-expand-md bg-dark navbar-dark fixed-top'>");
-			out.println("<a class='navbar-brand' href='#'><img alt='logo'style='width: 40px;' src='../imagenes/LogoCuadrado.jpg'></a>");
+			out.println("<a class='navbar-brand' href='#'><img alt='logo' style='width: 40px;' src='./imagenes/LogoCuadrado.jpg'></a>");
 			out.println("<button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#collapsibleNavbar'>");
 			out.println("<span class='navbar-toggler-icon'></span>");
 			out.println("</button>");
@@ -63,18 +65,18 @@ public class pantallaInicial extends HttpServlet {
 			out.println("</div>");
 			out.println("</form>");
 			out.println("<ul class='navbar-nav'>");
-			out.println("<li class='nav-item'><a class='nav-link' href='./crearPost_formulario.html'>Crear Post</a></li>");
+			out.println("<li class='nav-item'><a class='nav-link' href='./appFlow/crearPost_formulario.html'>Crear Post</a></li>");
 			out.println("<li class='nav-item'><a class='nav-link' href='/Proyecto_SW1/misPosts'>Mis posts</a></li>");
-			out.println("<li class='nav-item dropdown'><a\r\n class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'> Temática </a>");
+			out.println("<li class='nav-item dropdown'><a\r\n class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'> Temï¿½tica </a>");
 			out.println("<div class='dropdown-menu' aria-labelledby='navbarDropdown'>");
 			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=juegosRol'>Juegos de rol</a>");
-			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=2'>PCs y electrónica</a>");
+			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=2'>PCs y electrï¿½nica</a>");
 			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=3'>Otro tema bro</a>");
 			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=4'>Tema 4</a>");
 			out.println("<div class='dropdown-divider'></div>");
 			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=T'>Todo</a>");
 			out.println("</div></li>");
-			out.println("<li class='nav-item'><a class='nav-link' href='#'>Cerrar Sesión</a></li>");
+			out.println("<li class='nav-item'><a class='nav-link' href='#'>Cerrar Sesiï¿½n</a></li>");
 			out.println("</ul>");
 			out.println("</div>");
 			out.println("</nav>");
@@ -82,7 +84,10 @@ public class pantallaInicial extends HttpServlet {
 			try {
 				
 				Class.forName("com.mysql.cj.jdbc.Driver");
+				//contraseÃ±a root:
 				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "root");
+				//contraseÃ±a carlos:
+				//connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "qwertyuiop1234567890");
 				statement = connection.createStatement();
 				
 				rs = statement.executeQuery("SELECT * from post LIMIT 20");
@@ -92,15 +97,12 @@ public class pantallaInicial extends HttpServlet {
 				while (rs.next()) {
 
 			
-					out.println("<div class=\"card\">");
-					out.println("<div class=\'card-header bg-success text-white\'>");
-					out.println("<div class='car'>");
+					out.println("<div class='card'>");
 					out.println("<div class='card-header bg-success text-white'>");
 					out.println("<h3>" + rs.getString("titulo") + "</h3>");
 					out.println("</div>");
 					out.println("<div class='card-body'>");
 					out.println("<p>"+ rs.getString("contenido") + "</p>");
-					
 					//HACER:
 					//Revisar que este statement funciona, igual hay que parsear el id_usuario.
 					ResultSet resultset = statement.executeQuery("SELECT * FROM usuario WHERE id=" + rs.getInt("id_usuario"));

@@ -15,9 +15,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "crearpost", urlPatterns = { "/crearPost" })
 public class crearpost extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Connection connection = null;
 	private Statement statement = null;
 	ResultSet resultSet = null;
@@ -27,7 +32,10 @@ public class crearpost extends HttpServlet {
 		super.init();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "root");
+			//contraseña root:
+			//connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "root");
+			//contraseña carlos:
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "qwertyuiop1234567890");
 			statement = connection.createStatement();
 		} catch (Exception e) {
 			System.out.println(e);
@@ -41,11 +49,20 @@ public class crearpost extends HttpServlet {
 		String tematica = req.getParameter("tematica");
 		String contenido = req.getParameter("contenido");
 		ServletContext context = req.getServletContext();
-		
+		//System.out.println((int) req.getAttribute("id_usuario"));
+		HttpSession session = req.getSession();
+		System.out.println(session.getAttribute("idUsuarioSesion"));
+		System.out.println(titulo + ' ' + tematica + ' ' + contenido);
 
 //Peticion que realizamos a la base de datos para que inserte dentro de la tabla de post lo que el usuario ha metido por pantalla
-		String query = "INSERTO INTO post VALUES( NULL, '" + req.getAttribute("id_usuario").toString() + "', '" + titulo + "', '" + tematica + "', '" + contenido + "')";
+		String query = "INSERT INTO post VALUES(NULL, " + session.getAttribute("idUsuarioSesion") + ", '" + titulo + "', '" + tematica + "', '" + contenido + "')";
 
+		try {
+			statement.executeUpdate(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		RequestDispatcher inicio = context.getNamedDispatcher("inicio");
 		inicio.forward(req, resp);

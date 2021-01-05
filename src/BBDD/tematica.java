@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class tematica */
@@ -22,7 +23,9 @@ public class tematica extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Object autenticadoObj = req.getAttribute("autenticado");
+		HttpSession session = req.getSession();
+		Object autenticadoObj = session.getAttribute("autenticado");
+		//Object autenticadoObj = req.getAttribute("autenticado");
 		Object temaObj = req.getAttribute("tema");
 		ServletContext context = req.getServletContext();
 		if(temaObj != null && autenticadoObj != null && (boolean) autenticadoObj) {
@@ -62,13 +65,13 @@ public class tematica extends HttpServlet {
 			out.println("<li class='nav-item dropdown'><a\r\n class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'> TemÃ¡tica </a>");
 			out.println("<div class='dropdown-menu' aria-labelledby='navbarDropdown'>");
 			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=juegosRol'>Juegos de rol</a>");
-			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=2'>PCs y electrónica</a>");
+			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=2'>PCs y electrï¿½nica</a>");
 			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=3'>Otro tema bro</a>");
 			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=4'>Tema 4</a>");
 			out.println("<div class='dropdown-divider'></div>");
 			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=T'>Todo</a>");
 			out.println("</div></li>");
-			out.println("<li class='nav-item'><a class='nav-link' href='#'>Cerrar Sesión</a></li>");
+			out.println("<li class='nav-item'><a class='nav-link' href='#'>Cerrar Sesiï¿½n</a></li>");
 			out.println("</ul>");
 			out.println("</div>");
 			out.println("</nav>");

@@ -26,7 +26,10 @@ public class registro extends HttpServlet{
 		super.init();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "root");
+			//contraseña root:
+			//connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "root");
+			//contraseña carlos:
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "qwertyuiop1234567890");
 			statement = connection.createStatement();
 		} catch (Exception e) {
 			System.out.println(e);
@@ -38,19 +41,20 @@ public class registro extends HttpServlet{
 					+ " nombreusuario VARCHAR (20) NOT NULL,\r\n"
 					+ " contrasena VARCHAR(20) NOT NULL,\r\n"
 					+ " correo VARCHAR (100) NOT NULL UNIQUE)");
-			
+			System.out.println("tabla usuario creada");
 			statement.execute("CREATE TABLE IF NOT EXISTS post (\r\n"
-					+ "    id_post INT NOT NULL AUTO_INCREMENT,\r\n"
-					+ "    id_usuario INT NOT NULL,\r\n"
-					+ "    titulo TEXT NOT NULL,\r\n"
-					+ "    tematica TEXT NOT NULL,\r\n"
-					+ "    contenido TEXT NOT NULL,\r\n"
-					+ "    PRIMARY KEY(id_post),\r\n"
-					+ "    INDEX(id),\r\n"
-					+ "    FOREIGN KEY (id) REFERENCES usuario (id)\r\n"
-					+ "        ON DELETE CASCADE\r\n"
-					+ "        ON UPDATE NO ACTION\r\n"
+					+ " id_post INT NOT NULL AUTO_INCREMENT,\r\n"
+					+ " id_usuario INT NOT NULL,\r\n"
+					+ " titulo TEXT NOT NULL,\r\n"
+					+ " tematica TEXT NOT NULL,\r\n"
+					+ " contenido TEXT NOT NULL,\r\n"
+					+ " PRIMARY KEY(id_post),\r\n"
+					+ " INDEX(id_usuario),\r\n"
+					+ " FOREIGN KEY (id_usuario) REFERENCES usuario (id)\r\n"
+					+ "     ON DELETE CASCADE\r\n"
+					+ "     ON UPDATE NO ACTION\r\n"
 					+ ")");
+			System.out.println("tabla post creada");
 			
 		} catch (Exception e) {
 			System.out.println(e);
