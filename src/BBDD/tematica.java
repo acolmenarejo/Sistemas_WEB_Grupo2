@@ -49,7 +49,7 @@ public class tematica extends HttpServlet {
 			out.println("</head>");
 			out.println("<body>");
 			out.println("<nav class='navbar navbar-expand-md bg-dark navbar-dark fixed-top'>");
-			out.println("<a class='navbar-brand' href='#'><img alt='logo'style='width: 40px;' src='../imagenes/LogoCuadrado.jpg'></a>");
+			out.println("<a class='navbar-brand' href='#'><img alt='logo'style='width: 40px;' src='./imagenes/LogoCuadrado.jpg'></a>");
 			out.println("<button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#collapsibleNavbar'>");
 			out.println("<span class='navbar-toggler-icon'></span>");
 			out.println("</button>");
