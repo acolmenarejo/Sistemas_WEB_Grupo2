@@ -31,7 +31,7 @@ public class tematica extends HttpServlet {
 		if(temaObj != null && autenticadoObj != null && (boolean) autenticadoObj) {
 			Connection connection = null;
 			Statement statement = null;
-			ResultSet rs;
+			
 			
 			resp.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = resp.getWriter();
@@ -62,7 +62,7 @@ public class tematica extends HttpServlet {
 			out.println("<ul class='navbar-nav'>");
 			out.println("<li class='nav-item'><a class='nav-link' href='./crearPost_formulario.html'>Crear Post</a></li>");
 			out.println("<li class='nav-item'><a class='nav-link' href='/Proyecto_SW1/misPosts'>Mis posts</a></li>");
-			out.println("<li class='nav-item dropdown'><a\r\n class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'> Temática </a>");
+			out.println("<li class='nav-item dropdown'><a\r\n class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'> Temï¿½tica </a>");
 			out.println("<div class='dropdown-menu' aria-labelledby='navbarDropdown'>");
 			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=1'>1</a>");
 			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=2'>2</a>");
@@ -71,7 +71,7 @@ public class tematica extends HttpServlet {
 			out.println("<div class='dropdown-divider'></div>");
 			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=T'>Todo</a>");
 			out.println("</div></li>");
-			out.println("<li class='nav-item'><a class='nav-link' href='#'>Cerrar Sesión</a></li>");
+			out.println("<li class='nav-item'><a class='nav-link' href='#'>Cerrar Sesiï¿½n</a></li>");
 			out.println("</ul>");
 			out.println("</div>");
 			out.println("</nav>");
@@ -81,9 +81,11 @@ public class tematica extends HttpServlet {
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "root");
 				statement = connection.createStatement();
-				rs = statement.executeQuery("SELECT * from post WHERE tematica='"+ temaObj.toString() +"'LIMIT 20");
 				
-				
+				ResultSet rs = null;
+				synchronized(statement) {
+					rs = statement.executeQuery("SELECT * from post WHERE tematica='"+ temaObj.toString() +"'LIMIT 20");
+				}
 				out.println("<div class='container container-fluid' style='margin-top:80px'>");
 				
 				
