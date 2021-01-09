@@ -6,8 +6,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -18,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import BBDD.Blog;
 
 @WebServlet(name = "inicio", urlPatterns = { "/inicio" })
 public class pantallaInicial extends HttpServlet {
@@ -32,10 +29,8 @@ public class pantallaInicial extends HttpServlet {
 		if(autenticadoObj != null && (boolean) autenticadoObj) {
 			Connection connection = null;
 			Statement statement = null;
-			ResultSet rs;			
+			Statement statementB = null;
 			
-			String nombre = req.getParameter("nombre");
-			String contrasena = req.getParameter("contrasena");
 			System.out.println("pantalla inicial OK");
 		
 			resp.setContentType("text/html;charset=UTF-8");
@@ -67,7 +62,7 @@ public class pantallaInicial extends HttpServlet {
 			out.println("<ul class='navbar-nav'>");
 			out.println("<li class='nav-item'><a class='nav-link' href='./appFlow/crearPost_formulario.html'>Crear Post</a></li>");
 			out.println("<li class='nav-item'><a class='nav-link' href='/Proyecto_SW1/misPosts'>Mis posts</a></li>");
-			out.println("<li class='nav-item dropdown'><a\r\n class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'> Temática </a>");
+			out.println("<li class='nav-item dropdown'><a\r\n class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'> Temï¿½tica </a>");
 			out.println("<div class='dropdown-menu' aria-labelledby='navbarDropdown'>");
 			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=1'>1</a>");
 			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=2'>2</a>");
@@ -76,13 +71,14 @@ public class pantallaInicial extends HttpServlet {
 			out.println("<div class='dropdown-divider'></div>");
 			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=T'>Todo</a>");
 			out.println("</div></li>");
-			out.println("<li class='nav-item'><a class='nav-link' href='#'>Cerrar Sesión</a></li>");
+			out.println("<li class='nav-item'><a class='nav-link' href='#'>Cerrar Sesiï¿½n</a></li>");
 			out.println("</ul>");
 			out.println("</div>");
 			out.println("</nav>");
 							
 			try {
-				
+				ResultSet rs = null;
+				ResultSet resultset = null;
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				//contraseÃ±a root:
 				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "root");
@@ -90,11 +86,14 @@ public class pantallaInicial extends HttpServlet {
 				//connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "qwertyuiop1234567890");
 				statement = connection.createStatement();
 				
-				rs = statement.executeQuery("SELECT * from post LIMIT 20");
-				
+				synchronized(statement) {
+					rs = statement.executeQuery("SELECT * from post LIMIT 20");
+				}
 				out.println("<div class='container container-fluid' style='margin-top:80px'>");
 				
+				//Bucle para imprimir los post:
 				while (rs.next()) {
+					System.out.println("[pantallaInicial] entra en el while");
 
 			
 					out.println("<div class='card'>");
@@ -103,11 +102,18 @@ public class pantallaInicial extends HttpServlet {
 					out.println("</div>");
 					out.println("<div class='card-body'>");
 					out.println("<p>"+ rs.getString("contenido") + "</p>");
-					//HACER:
-					//Revisar que este statement funciona, igual hay que parsear el id_usuario.
-					ResultSet resultset = statement.executeQuery("SELECT * FROM usuario WHERE id=" + rs.getInt("id_usuario"));
-					if(resultset.next()) {
-						out.println("<footer class='blockquote-footer'>"+ resultset.getString("nombreusuario") +"</footer>");
+					
+					//Obtener e imprimir el nombre del creador del post:
+					try {
+						synchronized(statementB) {
+						resultset = statementB.executeQuery("SELECT * FROM usuario WHERE id=" + rs.getInt("id_usuario"));
+							System.out.println("carga usuario del post");
+						}
+						if(resultset.next()) {
+							out.println("<footer class='blockquote-footer'>"+ resultset.getString("nombreusuario") +"</footer>");
+						}
+					} catch(Exception e) {
+						System.out.println(e);
 					}
 					
 					
@@ -134,9 +140,10 @@ public class pantallaInicial extends HttpServlet {
 			}	
 		
 		} else {
+			System.out.println("error pantalla inicial");
 			RequestDispatcher error = context.getRequestDispatcher("/paginasError/error.html");
 			error.forward(req, resp);
-			System.out.println("error pantalla inicial");
+			
 		}
 		
 		

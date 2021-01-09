@@ -67,7 +67,7 @@ public class misPosts extends HttpServlet {
 			out.println("<ul class='navbar-nav'>");
 			out.println("<li class='nav-item'><a class='nav-link' href='./appFlow/crearPost_formulario.html'>Crear Post</a></li>");
 			out.println("<li class='nav-item'><a class='nav-link' href='/Proyecto_SW1/misPosts'>Mis posts</a></li>");
-			out.println("<li class='nav-item dropdown'><a\r\n class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'> Temática </a>");
+			out.println("<li class='nav-item dropdown'><a\r\n class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'> Temï¿½tica </a>");
 			out.println("<div class='dropdown-menu' aria-labelledby='navbarDropdown'>");
 			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=1'>1</a>");
 			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=2'>2</a>");
@@ -76,7 +76,7 @@ public class misPosts extends HttpServlet {
 			out.println("<div class='dropdown-divider'></div>");
 			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=T'>Todo</a>");
 			out.println("</div></li>");
-			out.println("<li class='nav-item'><a class='nav-link' href='#'>Cerrar Sesión</a></li>");
+			out.println("<li class='nav-item'><a class='nav-link' href='#'>Cerrar Sesiï¿½n</a></li>");
 			out.println("</ul>");
 			out.println("</div>");
 			out.println("</nav>");
@@ -89,7 +89,7 @@ public class misPosts extends HttpServlet {
 				//contraseÃ±a carlos:
 				//connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "qwertyuiop1234567890");
 				statement = connection.createStatement();
-				//Hay que cambiar la consulta, pero como sigue el procedimiento de temática, no he sabido hacerlo
+				//Hay que cambiar la consulta, pero como sigue el procedimiento de temï¿½tica, no he sabido hacerlo
 				rs = statement.executeQuery("SELECT * from post where  LIMIT 20");
 				
 				out.println("<div class='container container-fluid' style='margin-top:80px'>");
