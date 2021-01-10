@@ -72,7 +72,7 @@ public class pantallaInicial extends HttpServlet {
 			out.println("<div class='dropdown-divider'></div>");
 			out.println("<a class='dropdown-item' href='/Proyecto_SW1/inicio'>Todo</a>");
 			out.println("</div></li>");
-			out.println("<li class='nav-item'><a class='nav-link' href='#'>Cerrar Sesión</a></li>");
+			out.println("<li class='nav-item'><a class='nav-link' href='/Proyecto_SW1/Pyet'>Cerrar Sesión</a></li>");
 			out.println("</ul>");
 			out.println("</div>");
 			out.println("</nav>");
