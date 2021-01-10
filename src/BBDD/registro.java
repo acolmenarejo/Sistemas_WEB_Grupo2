@@ -117,6 +117,7 @@ public class registro extends HttpServlet{
 			out.println("<head><title>Registro</title></head>");
 			out.println("<body>");
 			out.println("<h1>" + mensaje + "</h1>");
+			out.println("<a href='/Proyecto_SW1/Pyet'> Volver al inicio </a>");
 			out.println("</body></html>");
 		}
 	}
