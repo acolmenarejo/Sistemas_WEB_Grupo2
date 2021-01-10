@@ -10,6 +10,7 @@ import java.sql.Statement;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class tematica */
-@WebServlet("/tematica")
+@WebServlet(name="tematica",urlPatterns={"/tematica"},initParams={@WebInitParam(name="tematica", value="1")})
 public class tematica extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -26,12 +27,14 @@ public class tematica extends HttpServlet {
 		HttpSession session = req.getSession(false);
 		Object autenticadoObj = session.getAttribute("autenticado");
 		//Object autenticadoObj = req.getAttribute("autenticado");
-		Object temaObj = req.getAttribute("tema");
+		String tematica = getInitParameter("tematica");
 		ServletContext context = req.getServletContext();
-		if(temaObj != null && autenticadoObj != null && (boolean) autenticadoObj) {
+		if(autenticadoObj != null && (boolean) autenticadoObj) {
 			Connection connection = null;
+			Connection connection2 = null;
 			Statement statement = null;
-			
+			Statement statementB = null;
+			System.out.println(tematica);
 			
 			resp.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = resp.getWriter();
@@ -62,16 +65,16 @@ public class tematica extends HttpServlet {
 			out.println("<ul class='navbar-nav'>");
 			out.println("<li class='nav-item'><a class='nav-link' href='./crearPost_formulario.html'>Crear Post</a></li>");
 			out.println("<li class='nav-item'><a class='nav-link' href='/Proyecto_SW1/misPosts'>Mis posts</a></li>");
-			out.println("<li class='nav-item dropdown'><a\r\n class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'> Temï¿½tica </a>");
+			out.println("<li class='nav-item dropdown'><a\r\n class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'> Temática </a>");
 			out.println("<div class='dropdown-menu' aria-labelledby='navbarDropdown'>");
-			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=1'>1</a>");
-			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=2'>2</a>");
-			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=3'>3</a>");
-			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=4'>4</a>");
+			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica'>1</a>");
+			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica2'>2</a>");
+			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica3'>3</a>");
+			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica4'>4</a>");
 			out.println("<div class='dropdown-divider'></div>");
-			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=T'>Todo</a>");
+			out.println("<a class='dropdown-item' href='/Proyecto_SW1/inicio'>Todo</a>");
 			out.println("</div></li>");
-			out.println("<li class='nav-item'><a class='nav-link' href='#'>Cerrar Sesiï¿½n</a></li>");
+			out.println("<li class='nav-item'><a class='nav-link' href='#'>Cerrar Sesión</a></li>");
 			out.println("</ul>");
 			out.println("</div>");
 			out.println("</nav>");
@@ -83,14 +86,15 @@ public class tematica extends HttpServlet {
 				statement = connection.createStatement();
 				
 				ResultSet rs = null;
+				ResultSet resultset = null;
 				synchronized(statement) {
-					rs = statement.executeQuery("SELECT * from post WHERE tematica='"+ temaObj.toString() +"'LIMIT 20");
+					rs = statement.executeQuery("SELECT * from post WHERE tematica='"+ tematica +"'LIMIT 20");
 				}
 				out.println("<div class='container container-fluid' style='margin-top:80px'>");
 				
 				
 				while (rs.next()) {
-					out.println("<div class='car'>");
+					out.println("<div class='card'>");
 					out.println("<div class='card-header bg-success text-white'>");
 					out.println("<h3>" + rs.getString("titulo") + "</h3>");
 					out.println("</div>");
@@ -99,9 +103,19 @@ public class tematica extends HttpServlet {
 					
 					//HACER: 
 					//Revisar que este statement funciona, igual hay que parsear el id_usuario.
-					ResultSet resultset = statement.executeQuery("SELECT * FROM usuario WHERE id=" + rs.getInt("id_usuario"));
-					if(resultset.next()) {
-						out.println("<footer class='blockquote-footer'>"+ resultset.getString("nombreusuario") +"</footer>");
+					try {
+						int id = rs.getInt("id_usuario");
+						connection2 = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "root");
+						statementB = connection2.createStatement();
+						synchronized(statementB) {
+						resultset = statementB.executeQuery("SELECT * FROM usuario WHERE id=" + id);
+							System.out.println("carga usuario del post");
+						}
+						if(resultset.next()) {
+							out.println("<footer class='blockquote-footer'>"+ resultset.getString("nombreusuario") +"</footer>");
+						}
+					} catch(Exception e) {
+						System.out.println(e);
 					}
 					
 					

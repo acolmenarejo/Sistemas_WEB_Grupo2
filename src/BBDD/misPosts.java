@@ -26,12 +26,17 @@ public class misPosts extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession(false);
 		Object autenticadoObj = session.getAttribute("autenticado");
-		String idUsuarioSesion = (String) session.getAttribute("idUsuarioSesion");
+		Object idUsuarioSesion = session.getAttribute("idUsuarioSesion");
+		System.out.println(idUsuarioSesion);
 		// Object autenticadoObj = req.getAttribute("autenticado");
 		ServletContext context = req.getServletContext();
 		if (autenticadoObj != null && (boolean) autenticadoObj) {
 			Connection connection = null;
+			Connection connection2 = null;
 			Statement statement = null;
+			Statement statementB = null;
+			ResultSet rs = null;
+			ResultSet resultset = null;
 
 			System.out.println("pantalla inicial OK");
 
@@ -70,16 +75,16 @@ public class misPosts extends HttpServlet {
 					"<li class='nav-item'><a class='nav-link' href='./appFlow/crearPost_formulario.html'>Crear Post</a></li>");
 			out.println("<li class='nav-item'><a class='nav-link' href='/Proyecto_SW1/misPosts'>Mis posts</a></li>");
 			out.println(
-					"<li class='nav-item dropdown'><a\r\n class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'> Temï¿½tica </a>");
+					"<li class='nav-item dropdown'><a\r\n class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'> Temática </a>");
 			out.println("<div class='dropdown-menu' aria-labelledby='navbarDropdown'>");
-			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=1'>1</a>");
-			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=2'>2</a>");
-			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=3'>3</a>");
-			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=4'>4</a>");
+			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica'>1</a>");
+			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica2'>2</a>");
+			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica3'>3</a>");
+			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica4'>4</a>");
 			out.println("<div class='dropdown-divider'></div>");
 			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica?tema=T'>Todo</a>");
 			out.println("</div></li>");
-			out.println("<li class='nav-item'><a class='nav-link' href='#'>Cerrar Sesiï¿½n</a></li>");
+			out.println("<li class='nav-item'><a class='nav-link' href='#'>Cerrar Sesión</a></li>");
 			out.println("</ul>");
 			out.println("</div>");
 			out.println("</nav>");
@@ -94,7 +99,7 @@ public class misPosts extends HttpServlet {
 				// "root", "qwertyuiop1234567890");
 				statement = connection.createStatement();
 
-				ResultSet rs = null;
+				
 
 				synchronized (statement) {
 					rs = statement.executeQuery("SELECT * from post WHERE id_usuario='" + idUsuarioSesion + "'");
@@ -112,7 +117,21 @@ public class misPosts extends HttpServlet {
 					out.println("<div class='card-body'>");
 					out.println("<p>" + rs.getString("contenido") + "</p>");
 
-					out.println("<footer class='blockquote-footer'>" + idUsuarioSesion + "</footer>");
+					try {
+						int id = rs.getInt("id_usuario");
+						connection2 = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "root");
+						statementB = connection2.createStatement();
+						synchronized(statementB) {
+						resultset = statementB.executeQuery("SELECT * FROM usuario WHERE id=" + id);
+							System.out.println("carga usuario del post");
+						}
+						if(resultset.next()) {
+							out.println("<footer class='blockquote-footer'>"+ resultset.getString("nombreusuario") +"</footer>");
+						}
+					} catch(Exception e) {
+						System.out.println(e);
+					}
+					
 
 					out.println("</div>");
 					out.println("</div>");

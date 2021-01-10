@@ -4,15 +4,46 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
 	
-
 	<servlet>
-		<servlet-name>login</servlet-name>
-		<servlet-class>BBDD.login</servlet-class>
+		<servlet-name>tematica</servlet-name>
+		<servlet-class>BBDD.tematica</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>inicio</servlet-name>
-		<servlet-class>pantallaInicial.inicio</servlet-class>
+		<servlet-name>tematica2</servlet-name>
+		<servlet-class>BBDD.tematica</servlet-class>
+		<init-param>
+			<param-name>tematica</param-name>
+			<param-value>2</param-value>
+		</init-param>
 	</servlet>
+	<servlet>
+		<servlet-name>tematica3</servlet-name>
+		<servlet-class>BBDD.tematica</servlet-class>
+		<init-param>
+			<param-name>tematica</param-name>
+			<param-value>3</param-value>
+		</init-param>
+	</servlet>
+	<servlet>
+		<servlet-name>tematica4</servlet-name>
+		<servlet-class>BBDD.tematica</servlet-class>
+		<init-param>
+			<param-name>tematica</param-name>
+			<param-value>4</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>tematica2</servlet-name>
+		<url-pattern>/tematica2</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>tematica3</servlet-name>
+		<url-pattern>/tematica3</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>tematica4</servlet-name>
+		<url-pattern>/tematica4</url-pattern>
+	</servlet-mapping>
 	<error-page>
 		<exception-type>java.sql.SQLIntegrityConstraintViolationException</exception-type>
 		 <location>/formulario1/Login.html</location>
