@@ -77,12 +77,16 @@ public class autologinFilter implements Filter {
 						System.out.println("Filtro autoLogin - cookie existe y procesada");
 						chain.doFilter(request, response);
 						break;
-					}
+					}else {
+						System.out.println("[Filtro autologin] else");
+						RequestDispatcher pyet = context.getNamedDispatcher("pyet");
+						pyet.forward(request, response);
 
+					} 
 				}
 			} else {
 				System.out.println("[Filtro autologin] else");
-				RequestDispatcher pyet = context.getNamedDispatcher("Pyet");
+				RequestDispatcher pyet = context.getNamedDispatcher("pyet");
 				pyet.forward(request, response);
 
 			}

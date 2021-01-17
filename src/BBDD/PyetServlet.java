@@ -127,6 +127,8 @@ public class PyetServlet extends HttpServlet {
 			out.println("<p><font size=3>PYET es un lugar seguro para cualquier persona que sienta la necesidad de expresarse.</br> Somos una comunidad formada por miles de personas. </br> Nos fundamentamentos en la libertad de expresión resultante de la tolerancia y el respeto.</br> ¿Tienes algo que decir? </br></font></p>");
 			out.println(" <p align=\"center\"><font size=3><b> ¡PYET ES TU SITIO! </b></font></p>");
 			out.println("</br></br></br></br></br></br></br></br></br></br></br>");
+			out.println("</br></br></br></br></br></br></br></br></br></br></br>");
+			out.println("</br></br></br></br></br>");
 			out.println("</div>");
 			out.println("<div id=\"section2\" class=\"container-fluid\">");
 			out.println("<h1 align=\"center\"><b>¿Qué se puede encontrar dentro de PYET?</b></h1></br></br>");
@@ -141,7 +143,69 @@ public class PyetServlet extends HttpServlet {
 			out.println("<p><font size=3>Nos pareció una buena idea el poder hacer participe de esta idea a todo aquel que estuviera interesado y presentara las mismas inquietudes que nosotros.</font></p>");
 			out.println("<p><font size=3><b>¿Todavía no te has registrado? ¿A qué estas esperando?</b></font></p>");
 			out.println("</br></br></br></br></br></br></br></br></br></br></br>");
+			out.println("</br></br></br></br></br></br></br></br></br></br></br>");
+			out.println("</br></br></br></br></br>");
 			out.println("</div>");
+			
+			out.println("<div id='section4' class='container-fluid bg-grey'>");
+
+	        out.println("<h2 class='text-center'>CONTACT</h2>");
+
+	        out.println("<div class='row'>");
+
+	        out.println("<div class='col-sm-5'>");
+
+	        out.println("<p>Contact us and we'll get back to you within 24 hours.</p>");
+
+	        out.println("<p><span class='glyphicon glyphicon-map-marker'></span> Chicago, US</p>");
+
+	        out.println("<p><span class='glyphicon glyphicon-phone'></span> +00 1515151515</p>");
+
+	        out.println("<p><span class='glyphicon glyphicon-envelope'></span> myemail@something.com</p>");
+
+	        out.println("</div>");
+
+	        out.println("<div class='col-sm-7 slideanim'>");
+
+	        out.println("<div class='row'>");
+
+	        out.println("<div class='col-sm-6 form-group'>");
+
+	        out.println("<input class='form-control' id='name' name='name' placeholder='Name' type='text' required>");
+
+	        out.println("</div>");
+
+	        out.println("<div class='col-sm-6 form-group'>");
+
+	        out.println("<input class='form-control' id='email' name='email' placeholder='Email' type='email' required>");
+
+	        out.println("</div>");
+
+	        out.println("</div>");
+
+	        out.println("<textarea class='form-control' id='comments' name='comments' placeholder='Comment' rows='5'></textarea><br>");
+
+	        out.println("<div class='row'>");
+
+	        out.println("<div class='col-sm-12 form-group'>");
+
+	        out.println("<button class='btn btn-default pull-right' type='submit'>Send</button>");
+
+	        out.println("</div>");
+
+	        out.println("</div>");
+
+	        out.println("</div>");
+
+	        out.println("</div>");
+
+	        out.println("</div>");
+
+	        out.println("<img src='./imagenes/mapsCEU.png' class='w3-image w3-greyscale-min' style='width:100%'>");
+
+	        out.println("<br>");
+			
+			
 			out.println("</body>");
 			out.println("</html>");
 			

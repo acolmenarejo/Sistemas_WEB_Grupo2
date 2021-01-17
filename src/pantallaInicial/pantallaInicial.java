@@ -138,6 +138,24 @@ public class pantallaInicial extends HttpServlet {
 				out.println("});");
 				out.println("});");
 				out.println("});");
+				
+				out.println("</script>");
+				out.println("<script>");
+				
+				out.println("body {");
+
+				out.println("background: url('./imagenes/mapsCEU.png') no-repeat center center fixed;");
+
+				out.println("-webkit-background-size: cover;");
+
+				out.println("-moz-background-size: cover;");
+
+				out.println("background-size: cover;");
+
+				out.println("-o-background-size: cover;");
+
+				out.println("}");
+				
 				out.println("</script>");
 				out.println("</body></html>");
 			} catch (Exception e) {

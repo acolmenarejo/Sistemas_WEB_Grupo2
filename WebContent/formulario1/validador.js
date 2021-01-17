@@ -15,29 +15,7 @@ document.getElementById('submit').onclick = function() {
 		location.reload();
 		return (false);
 	}
-}
 
-let result = prompt("¿Cuantosañostienes?","");
-
-
-if (result<18){
-	alert("Acceso no permitido para menores de 18");
-	
-}
-else {
-	alert(result);
 }
 
 
-var bucle = prompt("¿CuantosBucles?","");
-giro(bucle);
-
-function giro(bucle){
-
-for(let i=0;i<bucle;i++){
-	alert(i);
-		if(i>4){
-			break;
-		}
-}
-}
