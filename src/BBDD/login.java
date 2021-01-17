@@ -35,9 +35,9 @@ public class login extends HttpServlet {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			//contraseña root:
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "root");
+			//connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "root");
 			//contraseña carlos:
-			//connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "qwertyuiop1234567890");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "qwertyuiop1234567890");
 			statement = connection.createStatement();
 		} catch (Exception e) {
 			System.out.println(e);
@@ -83,14 +83,13 @@ public class login extends HttpServlet {
 				if(antiguaSession != null) {
 					antiguaSession.invalidate();
 				}
-				//Creamos una nueva sesi�n
+				//Creamos una nueva sesi�n
 				HttpSession session = req.getSession();
 				
 				//Creamos la cookie del usuario
 				Cookie cookie= new Cookie("autologin",String.valueOf(resultSet.getInt("id")));
-				resp.addCookie(cookie);
-				
 				cookie.setMaxAge(60*60*24*30);
+				resp.addCookie(cookie);
 				
 				
 				session.setAttribute("autenticado", true);

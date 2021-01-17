@@ -18,7 +18,7 @@ import javax.servlet.http.Cookie;
 /**
  * Servlet Filter implementation class autologinFilter
  */
-@WebFilter(filterName = "autologinFilter", urlPatterns = { "/pyet/*" })
+@WebFilter(filterName = "autologinFilter", urlPatterns = { "/pyet/*"})
 public class autologinFilter implements Filter {
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -58,7 +58,7 @@ public class autologinFilter implements Filter {
 
 		ServletContext context = req.getServletContext();
 
-		// Comprobamos si ya se comprobó la cookie
+		// Comprobamos si ya se comprobï¿½ la cookie
 		System.out.println("[Filtro autologin] Inicia filtro");
 
 		Object autenticadoObj = session.getAttribute("autenticado");

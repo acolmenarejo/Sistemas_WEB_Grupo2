@@ -29,9 +29,9 @@ public class registro extends HttpServlet{
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			//contraseña root:
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "root");
+			//connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "root");
 			//contraseña carlos:
-			//connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "qwertyuiop1234567890");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "qwertyuiop1234567890");
 			statement = connection.createStatement();
 		} catch (Exception e) {
 			System.out.println(e);

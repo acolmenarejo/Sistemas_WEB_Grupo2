@@ -33,9 +33,8 @@ public class crearpost extends HttpServlet {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			//contraseña root:
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "root");
-			//contraseña carlos:
-			//connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "qwertyuiop1234567890");
+			String pass = "qwertyuiop1234567890";
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", pass);
 			statement = connection.createStatement();
 		} catch (Exception e) {
 			System.out.println(e);
@@ -45,6 +44,7 @@ public class crearpost extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //Lectura de los parametros del usuario
+		System.out.println("[Crear Post] invocado");
 		String titulo = req.getParameter("titulo");
 		String tematica = req.getParameter("tematica");
 		String contenido = req.getParameter("contenido");
@@ -58,7 +58,9 @@ public class crearpost extends HttpServlet {
 		String query = "INSERT INTO post VALUES(NULL, " + session.getAttribute("idUsuarioSesion") + ", '" + titulo + "', '" + tematica + "', '" + contenido + "')";
 
 		try {
-			statement.executeUpdate(query);
+			synchronized(statement) {
+				statement.executeUpdate(query);
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
