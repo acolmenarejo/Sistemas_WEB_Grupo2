@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="navegacion.PyetServlet" project="Sistemas_WEB_Grupo2" 
+    file="/Sistemas_WEB_Grupo2/src/navegacion/PyetServlet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="225" width="284" x="168" y="147"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="navegacion.tematica" project="Sistemas_WEB_Grupo2" 
+    file="/Sistemas_WEB_Grupo2/src/navegacion/tematica.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="335" x="492" y="147"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="BBDD.registro" project="Sistemas_WEB_Grupo2" 
+    file="/Sistemas_WEB_Grupo2/src/BBDD/registro.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="288" x="867" y="147"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="listeners.listenerContexto" project="Sistemas_WEB_Grupo2" 
+    file="/Sistemas_WEB_Grupo2/src/listeners/listenerContexto.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="241" x="1195" y="147"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="filtro.autologinFilter" project="Sistemas_WEB_Grupo2" 
+    file="/Sistemas_WEB_Grupo2/src/filtro/autologinFilter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="305" x="1476" y="147"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="navegacion.pantallaInicial" project="Sistemas_WEB_Grupo2" 
+    file="/Sistemas_WEB_Grupo2/src/navegacion/pantallaInicial.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="288" x="1821" y="147"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="BBDD.crearpost" project="Sistemas_WEB_Grupo2" 
+    file="/Sistemas_WEB_Grupo2/src/BBDD/crearpost.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="288" x="2149" y="147"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="navegacion.inicializadorVariables" project="Sistemas_WEB_Grupo2" 
+    file="/Sistemas_WEB_Grupo2/src/navegacion/inicializadorVariables.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="288" x="2477" y="147"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="navegacion.misPosts" project="Sistemas_WEB_Grupo2" 
+    file="/Sistemas_WEB_Grupo2/src/navegacion/misPosts.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="288" x="2805" y="147"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="listeners.listenerSesion" project="Sistemas_WEB_Grupo2" 
+    file="/Sistemas_WEB_Grupo2/src/listeners/listenerSesion.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="230" x="3133" y="147"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="BBDD.login" project="Sistemas_WEB_Grupo2" 
+    file="/Sistemas_WEB_Grupo2/src/BBDD/login.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="288" x="3403" y="147"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
