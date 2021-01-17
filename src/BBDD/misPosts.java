@@ -37,7 +37,7 @@ public class misPosts extends HttpServlet {
 			Statement statementB = null;
 			ResultSet rs = null;
 			ResultSet resultset = null;
-
+			
 			System.out.println("pantalla inicial OK");
 
 			resp.setContentType("text/html;charset=UTF-8");
@@ -59,7 +59,7 @@ public class misPosts extends HttpServlet {
 			out.println("<body>");
 			out.println("<nav class='navbar navbar-expand-md bg-dark navbar-dark fixed-top'>");
 			out.println(
-					"<a class='navbar-brand' href='#'><img alt='logo' style='width: 40px;' src='./imagenes/LogoCuadrado.jpg'></a>");
+					"<a class='navbar-brand' href='/Proyecto_SW1/pyet/inicio'><img alt='logo' style='width: 40px;' src='./imagenes/LogoCuadrado.jpg'></a>");
 			out.println(
 					"<button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#collapsibleNavbar'>");
 			out.println("<span class='navbar-toggler-icon'></span>");
@@ -77,14 +77,14 @@ public class misPosts extends HttpServlet {
 			out.println(
 					"<li class='nav-item dropdown'><a\r\n class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'> Temática </a>");
 			out.println("<div class='dropdown-menu' aria-labelledby='navbarDropdown'>");
-			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica'>1</a>");
-			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica2'>2</a>");
-			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica3'>3</a>");
-			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica4'>4</a>");
+			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica'>Juegos de rol</a>");
+			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica2'>PCs y electrónica</a>");
+			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica3'>Pokémon</a>");
+			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica4'>Web programming</a>");
 			out.println("<div class='dropdown-divider'></div>");
-			out.println("<a class='dropdown-item' href='/Proyecto_SW1/inicio'>Todo</a>");
+			out.println("<a class='dropdown-item' href='/Proyecto_SW1/pyet/inicio'>Todo</a>");
 			out.println("</div></li>");
-			out.println("<li class='nav-item'><a class='nav-link' href='/Proyecto_SW1/Pyet'>Cerrar Sesión</a></li>");
+			out.println("<li class='nav-item'><a class='nav-link' href='/Proyecto_SW1/pyet'>Cerrar Sesión</a></li>");
 			out.println("</ul>");
 			out.println("</div>");
 			out.println("</nav>");
@@ -102,7 +102,7 @@ public class misPosts extends HttpServlet {
 				
 
 				synchronized (statement) {
-					rs = statement.executeQuery("SELECT * from post WHERE id_usuario='" + idUsuarioSesion + "'");
+					rs = statement.executeQuery("SELECT * from post WHERE id_usuario=" + idUsuarioSesion.toString());
 				}
 
 				out.println("<div class='container container-fluid' style='margin-top:80px'>");

@@ -1,19 +1,3 @@
-/**
- * 
- */
-/*
-let result = prompt("¿Cuantosañostienes?","")
-while(result<18){
-
-if (result<18){
-	alert("Acceso no permitido para menores de 18")
-	result = prompt("¿Cuantosañostienes?","")
-	}
-}
-*/
-
-
-
 
 const email=document.getElementById('email');
 document.getElementById('submit').onclick=function(){validateEmail(email);
@@ -32,3 +16,5 @@ if(mail.value.match(mailformat))
     return (false);
 }
 }
+
+

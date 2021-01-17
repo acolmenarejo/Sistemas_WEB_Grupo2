@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,31 +36,7 @@ public class registro extends HttpServlet{
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		try {
-			System.out.println("connected");
-			statement.execute("CREATE TABLE IF NOT EXISTS usuario (\r\n"
-					+ " id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,\r\n"
-					+ " nombreusuario VARCHAR (20) NOT NULL,\r\n"
-					+ " contrasena VARCHAR(20) NOT NULL,\r\n"
-					+ " correo VARCHAR (100) NOT NULL UNIQUE)");
-			System.out.println("tabla usuario creada");
-			statement.execute("CREATE TABLE IF NOT EXISTS post (\r\n"
-					+ " id_post INT NOT NULL AUTO_INCREMENT,\r\n"
-					+ " id_usuario INT NOT NULL,\r\n"
-					+ " titulo TEXT NOT NULL,\r\n"
-					+ " tematica TEXT NOT NULL,\r\n"
-					+ " contenido TEXT NOT NULL,\r\n"
-					+ " PRIMARY KEY(id_post),\r\n"
-					+ " INDEX(id_usuario),\r\n"
-					+ " FOREIGN KEY (id_usuario) REFERENCES usuario (id)\r\n"
-					+ "     ON DELETE CASCADE\r\n"
-					+ "     ON UPDATE NO ACTION\r\n"
-					+ ")");
-			System.out.println("tabla post creada");
-			
-		} catch (Exception e) {
-			System.out.println(e);
-		}
+		
 	}
 	
 	
@@ -67,6 +45,9 @@ public class registro extends HttpServlet{
 		String correo = req.getParameter("email");
 		String nombreusuario = req.getParameter("nombreusuario");
 		String contrasena = req.getParameter("contrasena");
+		
+		ServletContext context = req.getServletContext();
+		
 		System.out.println(contrasena);
 
 		//String query = "select * from usuario";;
@@ -77,49 +58,41 @@ public class registro extends HttpServlet{
 			System.out.println(e);
 		}
 		try {
-	//Petición a la BBDD para que inserte los parametros del usuario y lo registre
-		String query = "INSERT INTO usuario VALUES( NULL,'" + nombreusuario + "', '" + contrasena + "', '" + correo + "')";
-
-		
-		/*
-		
-			System.out.println("previo0");
-			synchronized(statement) {
-				System.out.println("previo1");
-				resultSet = statement.executeQuery(query);
-				System.out.println("previo2");
-			}
-			while(resultSet.next()) {
-				System.out.println("previo4");
-				if(query!="NULL" || resultSet.getString("correo").equals(correo)) {
-					System.out.println("correo existente");
-				}else {
-					System.out.println("connected2");
-					query = "insert into usuario values( NULL,'A', '" + contraseña + "', '" + correo + "')";
-				}
-										
-				}
-			*/
-			synchronized(statement) {
-				statement.executeUpdate(query);
-			}
+			//Comprobamos si el usuario existe
+			String usuarioExiste = "SELECT * FROM usuario WHERE correo = '"+ correo + "'";
 			
+			synchronized(statement) {
+				resultSet = statement.executeQuery(usuarioExiste);
+				
+			}
+		
+			if(!resultSet.next() ){
 			
-			mensaje = "BD ha actualizado correctamente";
+				// Peticion a la BBDD para que inserte los parametros del usuario y lo registre
+				String query = "INSERT INTO usuario VALUES( NULL,'" + nombreusuario + "', '" + contrasena + "', '" + correo+ "')";
+				synchronized(statement) {
+					statement.executeUpdate(query);
+				}
+			}else {
+				
+				RequestDispatcher error = context.getRequestDispatcher("/paginasError/error.html");
+				error.forward(req, resp);
+			}			
+			
+						
 		} catch(Exception e) {
-			mensaje = "Error al insertar datos";
+			
 			System.out.println(e);
+			
+			RequestDispatcher error = context.getRequestDispatcher("/paginasError/error.html");
+			error.forward(req, resp);
+			
+			
 		}
 		
-		resp.setContentType("text/html;charset=UTF-8");
-		try(PrintWriter out = resp.getWriter()){
-			out.println("<html>");
-			out.println("<head><title>Registro</title></head>");
-			out.println("<body>");
-			out.println("<h1>" + mensaje + "</h1>");
-			out.println("<a href='/Proyecto_SW1/Pyet'> Volver al inicio </a>");
-			out.println("</body></html>");
-		}
+		RequestDispatcher login = context.getNamedDispatcher("login");
+		login.forward(req, resp);
+		
 	}
 	
 
@@ -136,6 +109,7 @@ public class registro extends HttpServlet{
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				
 			}
 		}
 	}

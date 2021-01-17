@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class tematica */
-@WebServlet(name="tematica",urlPatterns={"/tematica"},initParams={@WebInitParam(name="tematica", value="1")})
+@WebServlet(name="tematica",urlPatterns={"/tematica"},initParams={@WebInitParam(name="tematica", value="Juegos de rol")})
 public class tematica extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -52,7 +52,7 @@ public class tematica extends HttpServlet {
 			out.println("</head>");
 			out.println("<body>");
 			out.println("<nav class='navbar navbar-expand-md bg-dark navbar-dark fixed-top'>");
-			out.println("<a class='navbar-brand' href='#'><img alt='logo'style='width: 40px;' src='./imagenes/LogoCuadrado.jpg'></a>");
+			out.println("<a class='navbar-brand' href='/Proyecto_SW1/pyet/inicio'><img alt='logo'style='width: 40px;' src='./imagenes/LogoCuadrado.jpg'></a>");
 			out.println("<button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#collapsibleNavbar'>");
 			out.println("<span class='navbar-toggler-icon'></span>");
 			out.println("</button>");
@@ -63,18 +63,18 @@ public class tematica extends HttpServlet {
 			out.println("</div>");
 			out.println("</form>");
 			out.println("<ul class='navbar-nav'>");
-			out.println("<li class='nav-item'><a class='nav-link' href='./crearPost_formulario.html'>Crear Post</a></li>");
+			out.println("<li class='nav-item'><a class='nav-link' href='/Proyecto_SW1/appFlow/crearPost_formulario.html'>Crear Post</a></li>");
 			out.println("<li class='nav-item'><a class='nav-link' href='/Proyecto_SW1/misPosts'>Mis posts</a></li>");
 			out.println("<li class='nav-item dropdown'><a\r\n class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'> Temática </a>");
 			out.println("<div class='dropdown-menu' aria-labelledby='navbarDropdown'>");
-			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica'>1</a>");
-			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica2'>2</a>");
-			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica3'>3</a>");
-			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica4'>4</a>");
+			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica'>Juegos de rol</a>");
+			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica2'>PCs y electrónica</a>");
+			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica3'>Pokémon</a>");
+			out.println("<a class='dropdown-item' href='/Proyecto_SW1/tematica4'>Web programming</a>");
 			out.println("<div class='dropdown-divider'></div>");
-			out.println("<a class='dropdown-item' href='/Proyecto_SW1/inicio'>Todo</a>");
+			out.println("<a class='dropdown-item' href='/Proyecto_SW1/pyet/inicio'>Todo</a>");
 			out.println("</div></li>");
-			out.println("<li class='nav-item'><a class='nav-link' href='/Proyecto_SW1/Pyet'>Cerrar Sesión</a></li>");
+			out.println("<li class='nav-item'><a class='nav-link' href='/Proyecto_SW1/pyet'>Cerrar Sesión</a></li>");
 			out.println("</ul>");
 			out.println("</div>");
 			out.println("</nav>");
@@ -88,7 +88,7 @@ public class tematica extends HttpServlet {
 				ResultSet rs = null;
 				ResultSet resultset = null;
 				synchronized(statement) {
-					rs = statement.executeQuery("SELECT * from post WHERE tematica='"+ tematica +"'LIMIT 20");
+					rs = statement.executeQuery("SELECT * from post WHERE tematica='"+ tematica +"' LIMIT 20");
 				}
 				out.println("<div class='container container-fluid' style='margin-top:80px'>");
 				
@@ -105,10 +105,8 @@ public class tematica extends HttpServlet {
 					//Revisar que este statement funciona, igual hay que parsear el id_usuario.
 					try {
 						int id = rs.getInt("id_usuario");
-						connection2 = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "root");
-						statementB = connection2.createStatement();
-						synchronized(statementB) {
-						resultset = statementB.executeQuery("SELECT * FROM usuario WHERE id=" + id);
+						synchronized(statement) {
+						resultset = statement.executeQuery("SELECT * FROM usuario WHERE id=" + id);
 							System.out.println("carga usuario del post");
 						}
 						if(resultset.next()) {

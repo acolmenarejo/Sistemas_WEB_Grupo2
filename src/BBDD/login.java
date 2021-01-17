@@ -42,30 +42,7 @@ public class login extends HttpServlet {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		try {
-			System.out.println("connected");
-			statement.execute("CREATE TABLE IF NOT EXISTS usuario (\r\n"
-					+ " id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,\r\n"
-					+ " nombreusuario VARCHAR (20) NOT NULL,\r\n"
-					+ " contrasena VARCHAR(20) NOT NULL,\r\n"
-					+ " correo VARCHAR (100) NOT NULL UNIQUE)");
-			
-			statement.execute("CREATE TABLE IF NOT EXISTS post (\r\n"
-					+ " id_post INT NOT NULL AUTO_INCREMENT,\r\n"
-					+ " id_usuario INT NOT NULL,\r\n"
-					+ " titulo TEXT NOT NULL,\r\n"
-					+ " tematica TEXT NOT NULL,\r\n"
-					+ " contenido TEXT NOT NULL,\r\n"
-					+ " PRIMARY KEY(id_post),\r\n"
-					+ " INDEX(id_usuario),\r\n"
-					+ " FOREIGN KEY (id_usuario) REFERENCES usuario (id)\r\n"
-					+ "     ON DELETE CASCADE\r\n"
-					+ "     ON UPDATE NO ACTION\r\n"
-					+ ")");
-			
-		} catch (Exception e) {
-			System.out.println(e);
-		}
+		
 	}
 	
 	
@@ -74,26 +51,7 @@ public class login extends HttpServlet {
 	 */
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		/*
-		//Comprobamos la existencia de la cookie. Si existe logueamos directamente al usuario. Si no existe creamos la cookie
-		String idSession = null;
-		Cookie[] cookies = req.getCookies();
 		
-		if(cookies!=null) {
-		for(int i=0; i<cookies.length; i++)
-		{
-			if(cookies[i].getName().equals("idUsuarioSession")) {
-				
-				idSession = cookies[i].getValue(); 
-				break;
-			}
-		  
-
-
-		}		
-		}
-		
-		*/
 		
 	}
 	
@@ -105,6 +63,7 @@ public class login extends HttpServlet {
 		String contrasena = req.getParameter("contrasena");
 		ServletContext context = req.getServletContext();
 		
+		
 		String query = "SELECT * FROM usuario WHERE correo='" + email + "' AND contrasena='" + contrasena + "'";
 		System.out.println(query);
 		try {
@@ -112,12 +71,12 @@ public class login extends HttpServlet {
 				resultSet = statement.executeQuery(query);
 				//System.out.println(resultSet.next());
 			}
-		//Revisar: Posible fallo
+		
 			if(resultSet.next() && resultSet.getString("correo").equals(email)){
 				//JOptionPane.showMessageDialog(null, "Todo OK todo GUCCI");
 				System.out.println("Todo OK todo GUCCI");
 						
-				RequestDispatcher inicio = context.getNamedDispatcher("inicio");
+				
 				
 				//Comprobamos que no haya una sesion previa
 				HttpSession antiguaSession = req.getSession(false);
@@ -128,15 +87,17 @@ public class login extends HttpServlet {
 				HttpSession session = req.getSession();
 				
 				//Creamos la cookie del usuario
-				Cookie cookie= new Cookie("sessionId",String.valueOf(resultSet.getInt("id")));
-				resp.addCookie(cookie);	
+				Cookie cookie= new Cookie("autologin",String.valueOf(resultSet.getInt("id")));
+				resp.addCookie(cookie);
 				
-				//req.setAttribute("autenticado", true);
+				cookie.setMaxAge(60*60*24*30);
+				
+				
 				session.setAttribute("autenticado", true);
-				//req.setAttribute("id_usuario", resultSet.getInt("id"));
-				//System.out.println(resultSet.getInt("id"));
 				session.setAttribute("idUsuarioSesion", resultSet.getInt("id"));
 				
+				//resp.sendRedirect(req.getContextPath() + "/pyet/inicio");
+				RequestDispatcher inicio = context.getNamedDispatcher("inicio");
 				inicio.forward(req, resp);
 			} else {
 				//JOptionPane.showMessageDialog(null, "No existe el usuario");
@@ -154,20 +115,7 @@ public class login extends HttpServlet {
 	}
 
 	
-	/*
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//String password = req.getParameter("password");
-		ServletContext context = req.getServletContext();
-		if(password.equals(passwordAdmin)) {
-			RequestDispatcher addPuntuacion = context.getNamedDispatcher("AddPuntuacion");
-			req.setAttribute("autenticado", true);
-			addPuntuacion.forward(req, resp);
-		} else {
-			RequestDispatcher error = context.getRequestDispatcher("/ejemplos06/error.html");
-			error.forward(req, resp);
-		}
-	}
-	*/
+	
 	
 	
 }
