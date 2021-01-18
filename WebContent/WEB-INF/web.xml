@@ -6,11 +6,11 @@
 
 	<servlet>
 		<servlet-name>tematica</servlet-name>
-		<servlet-class>BBDD.tematica</servlet-class>
+		<servlet-class>navegacion.tematica</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>tematica2</servlet-name>
-		<servlet-class>BBDD.tematica</servlet-class>
+		<servlet-class>navegacion.tematica</servlet-class>
 		<init-param>
 			<param-name>tematica</param-name>
 			<param-value>PCs y electronica</param-value>
@@ -18,7 +18,7 @@
 	</servlet>
 	<servlet>
 		<servlet-name>tematica3</servlet-name>
-		<servlet-class>BBDD.tematica</servlet-class>
+		<servlet-class>navegacion.tematica</servlet-class>
 		<init-param>
 			<param-name>tematica</param-name>
 			<param-value>Pokemon</param-value>
@@ -26,7 +26,7 @@
 	</servlet>
 	<servlet>
 		<servlet-name>tematica4</servlet-name>
-		<servlet-class>BBDD.tematica</servlet-class>
+		<servlet-class>navegacion.tematica</servlet-class>
 		<init-param>
 			<param-name>tematica</param-name>
 			<param-value>Web programming</param-value>
