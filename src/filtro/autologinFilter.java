@@ -18,7 +18,7 @@ import javax.servlet.http.Cookie;
 /**
  * Servlet Filter implementation class autologinFilter
  */
-@WebFilter(filterName = "autologinFilter", urlPatterns = { "/pyet/*"})
+@WebFilter(filterName = "autologinFilter", urlPatterns = { "/pyet/*" })
 public class autologinFilter implements Filter {
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -58,7 +58,7 @@ public class autologinFilter implements Filter {
 
 		ServletContext context = req.getServletContext();
 
-		// Comprobamos si ya se comprob� la cookie
+		// Comprobamos si ya se comprobó la cookie
 		System.out.println("[Filtro autologin] Inicia filtro");
 
 		Object autenticadoObj = session.getAttribute("autenticado");
@@ -71,18 +71,29 @@ public class autologinFilter implements Filter {
 
 						System.out.println(cookies[i]);
 						int idUsuarioAutoLogin = Integer.valueOf(cookies[i].getValue());
+						if (idUsuarioAutoLogin == 0) {
+							System.out.println("[Filtro autologin] else");
+							synchronized (context) {
+								RequestDispatcher pyet = context.getNamedDispatcher("pyet");
+								pyet.forward(request, response);
+							}
 
-						session.setAttribute("autenticado", true);
-						session.setAttribute("idUsuarioSesion", idUsuarioAutoLogin);
-						System.out.println("Filtro autoLogin - cookie existe y procesada");
-						chain.doFilter(request, response);
-						break;
-					}else {
+						} else {
+							session.setAttribute("autenticado", true);
+							session.setAttribute("idUsuarioSesion", idUsuarioAutoLogin);
+							System.out.println("Filtro autoLogin - cookie existe y procesada");
+							chain.doFilter(request, response);
+							break;
+						}
+
+					} else {
 						System.out.println("[Filtro autologin] else");
-						RequestDispatcher pyet = context.getNamedDispatcher("pyet");
-						pyet.forward(request, response);
+						synchronized (context) {
+							RequestDispatcher pyet = context.getNamedDispatcher("pyet");
+							pyet.forward(request, response);
+						}
 
-					} 
+					}
 				}
 			} else {
 				System.out.println("[Filtro autologin] else");
@@ -95,7 +106,7 @@ public class autologinFilter implements Filter {
 					+ session.getAttribute("idUsuarioSesion"));
 			chain.doFilter(request, response);
 		}
-	
+
 	}
 
 }

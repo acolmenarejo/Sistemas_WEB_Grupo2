@@ -13,13 +13,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name="pyet", urlPatterns= {"/pyet"})
+@WebServlet(name="pyet", urlPatterns= {"/pyet-home"})
 public class PyetServlet extends HttpServlet {
 	 /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
+	//contraseña root:
+	String pass = "qwertyuiop1234567890";
 	private Connection connection = null;
 	private Statement statement = null;
 	ResultSet resultSet = null;
@@ -33,14 +35,14 @@ public class PyetServlet extends HttpServlet {
 			try {
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				//connection = DriverManager.getConnection("jdbc:mysql://localhost/", "root", "root");
-				connection = DriverManager.getConnection("jdbc:mysql://localhost/", "root", "qwertyuiop1234567890");
+				connection = DriverManager.getConnection("jdbc:mysql://localhost/", "root", pass);
 				statement = connection.createStatement();
 				System.out.println("connected");
 				statement.execute("CREATE DATABASE IF NOT EXISTS p2");
 				statement.execute("use p2");
 				statement.execute("CREATE TABLE IF NOT EXISTS usuario (\r\n"
 						+ " id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,\r\n"
-						+ " nombreusuario VARCHAR (20) NOT NULL,\r\n"
+						+ " nombreusuario VARCHAR (30) NOT NULL,\r\n"
 						+ " contrasena VARCHAR(20) NOT NULL,\r\n"
 						+ " correo VARCHAR (100) NOT NULL UNIQUE)");
 				
@@ -102,14 +104,14 @@ public class PyetServlet extends HttpServlet {
 			out.println("<span class=\"icon-bar\"></span>");
 			out.println("<span class=\"icon-bar\"></span>  ");
 			out.println("</button>");
-			out.println("<a class=\"navbar-brand\" href=\"#\"><img alt=\"\" height=\"100%\" src=\"./imagenes/LogoCuadrado.jpg\"></a>");
+			out.println("<a class=\"navbar-brand\" href='/Proyecto_SW1/pyet-home'><img alt=\"\" height=\"100%\" src=\"./imagenes/LogoCuadrado.jpg\"></a>");
 			out.println("</div>");
 			out.println("<div>");
 			out.println("<div class=\"collapse navbar-collapse\" id=\"myNavbar\">");
 			out.println("<ul class=\"nav navbar-nav\">");
 			out.println("<li><a href=\"#section1\">PYET</a></li>");
-			out.println("<li><a href=\"#section2\">�Qu� puedo encontrar?</a></li>");
-			out.println("<li><a href=\"#section3\">�C�mo surgi�?</a></li>");
+			out.println("<li><a href=\"#section2\">Qué puedo encontrar?</a></li>");
+			out.println("<li><a href=\"#section3\">Cómo surgió?</a></li>");
 			out.println("<li><a href=\"#section4\">Contacto</a></li>");
 			out.println("</ul>");
 			out.println("<ul class=\"nav navbar-nav navbar-right\">");
@@ -117,7 +119,7 @@ public class PyetServlet extends HttpServlet {
 			out.println("<a href='./formularios/registro.html'><button type=\"button\" class=\"btn btn-primary\">Crear cuenta</button></a>");
 			out.println("</li>");
 			out.println("<li>");
-			out.println("<a href='./formularios/Login.html'><button type=\"button\" class=\"btn btn-success\">Iniciar sesi�n</button></a>");
+			out.println("<a href='./formularios/Login.html'><button type=\"button\" class=\"btn btn-success\">Iniciar sesión</button></a>");
 			out.println("</li>");
 			out.println("</ul>");
 			out.println("</div>");
@@ -126,21 +128,21 @@ public class PyetServlet extends HttpServlet {
 			out.println("</nav> ");
 			out.println("<div id=\"section1\" class=\"container-fluid\">");
 			out.println(" </br></br><h1 align=\"center\"><b>PYET</b></h1></br></br>");
-			out.println("<p><font size=3>PYET es un lugar seguro para cualquier persona que sienta la necesidad de expresarse.</br> Somos una comunidad formada por miles de personas. </br> Nos fundamentamentos en la libertad de expresi�n resultante de la tolerancia y el respeto.</br> �Tienes algo que decir? </br></font></p>");
-			out.println(" <p align=\"center\"><font size=3><b> �PYET ES TU SITIO! </b></font></p>");
+			out.println("<p><font size=3>PYET es un lugar seguro para cualquier persona que sienta la necesidad de expresarse.</br> Somos una comunidad formada por miles de personas. </br> Nos fundamentamentos en la libertad de expresión resultante de la tolerancia y el respeto.</br> Tienes algo que decir? </br></font></p>");
+			out.println(" <p align=\"center\"><font size=3><b> PYET ES TU SITIO! </b></font></p>");
 			out.println("</br></br></br></br></br></br></br></br></br></br></br>");
 			out.println("</br></br></br></br></br></br></br></br></br></br></br>");
 			out.println("</br></br></br></br></br>");
 			out.println("</div>");
 			out.println("<div id=\"section2\" class=\"container-fluid\">");
-			out.println("<h1 align=\"center\"><b>�Qu� se puede encontrar dentro de PYET?</b></h1></br></br>");
+			out.println("<h1 align=\"center\"><b>Qué se puede encontrar dentro de PYET?</b></h1></br></br>");
 			out.println("<p><font size=3>Nuestra comunidad se basa en la publicaci�n de post dentro de la plataforma.</font></p>");
 			out.println("<p><font size=3>Dentro de las diferentes tem�ticas disponibles se puede publicar el contenido deseado. Adem�s puedes consultar todos los post con la tem�tica que m�s te interese, de esta manera, solamente encontrar�s contenido de tu inter�s sin tener que perder tiempo filtrando tu mismo las distintas publicaciones. </font></p>");
 			out.println("<p><font size=3> Si quieres saber m�s solo tienes que registrarte y explorar!</font></p>");
 			out.println("</br></br></br></br></br></br></br></br></br></br></br>");
 			out.println("</div>");
 			out.println("<div id=\"section3\" class=\"container-fluid\">");
-			out.println("<h1 align=\"center\"><b>�C�mo surgi� PYET?</b></h1></br></br>");
+			out.println("<h1 align=\"center\"><b>Cómo surgió PYET?</b></h1></br></br>");
 			out.println("<p><font size=3>PYET naci� como un proyecto de estudiantes de universidad con la motivaci�n de conseguir una plataforma de expresi�n libre y responsable enfocada en distintos temas interesantes sin tener la necesidad de perder tiempo en aquellos que no nos llamaban la atenci�n.</font></p>");
 			out.println("<p><font size=3>Nos pareci� una buena idea el poder hacer participe de esta idea a todo aquel que estuviera interesado y presentara las mismas inquietudes que nosotros.</font></p>");
 			out.println("<p><font size=3><b>�Todav�a no te has registrado? �A qu� estas esperando?</b></font></p>");

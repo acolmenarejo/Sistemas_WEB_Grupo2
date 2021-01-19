@@ -34,8 +34,10 @@ public class tematica extends HttpServlet {
 			Connection connection2 = null;
 			Statement statement = null;
 			Statement statementB = null;
-			//contraseña root:
+			/////////////////
+			//contrasena root:
 			String pass = "qwertyuiop1234567890";
+			/////////////////
 			System.out.println(tematica);
 			
 			resp.setContentType("text/html;charset=UTF-8");
@@ -67,16 +69,16 @@ public class tematica extends HttpServlet {
 			out.println("<ul class='navbar-nav'>");
 			out.println("<li class='nav-item'><a class='nav-link' href='/Proyecto_SW1/appFlow/crearPost_formulario.html'>Crear Post</a></li>");
 			out.println("<li class='nav-item'><a class='nav-link' href='/Proyecto_SW1/pyet/misPosts'>Mis posts</a></li>");
-			out.println("<li class='nav-item dropdown active'><a\r\n class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'> Tem�tica </a>");
+			out.println("<li class='nav-item dropdown active'><a\r\n class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'> Temática </a>");
 			out.println("<div class='dropdown-menu' aria-labelledby='navbarDropdown'>");
 			out.println("<a class='dropdown-item' href='/Proyecto_SW1/pyet/tematica'>Juegos de rol</a>");
-			out.println("<a class='dropdown-item' href='/Proyecto_SW1/pyet/tematica2'>PCs y electr�nica</a>");
-			out.println("<a class='dropdown-item' href='/Proyecto_SW1/pyet/tematica3'>Pok�mon</a>");
+			out.println("<a class='dropdown-item' href='/Proyecto_SW1/pyet/tematica2'>PCs y electrónica</a>");
+			out.println("<a class='dropdown-item' href='/Proyecto_SW1/pyet/tematica3'>Pokémon</a>");
 			out.println("<a class='dropdown-item' href='/Proyecto_SW1/pyet/tematica4'>Web programming</a>");
 			out.println("<div class='dropdown-divider'></div>");
 			out.println("<a class='dropdown-item' href='/Proyecto_SW1/pyet/inicio'>Todo</a>");
 			out.println("</div></li>");
-			out.println("<li class='nav-item'><a class='nav-link' href='/Proyecto_SW1/pyet'>Cerrar Sesi�n</a></li>");
+			out.println("<li class='nav-item'><a class='nav-link' href='/Proyecto_SW1/cerrarSesion'>Cerrar Sesión</a></li>");
 			out.println("</ul>");
 			out.println("</div>");
 			out.println("</nav>");
@@ -84,9 +86,6 @@ public class tematica extends HttpServlet {
 			try {
 				
 				Class.forName("com.mysql.cj.jdbc.Driver");
-				//contraseña root:
-				//connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", "root");
-				//contraseña carlos:
 				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/p2", "root", pass);
 				statement = connection.createStatement();
 				
